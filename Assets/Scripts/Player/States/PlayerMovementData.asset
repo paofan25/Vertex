@@ -34,9 +34,9 @@ MonoBehaviour:
   staminaRegenRate: 1
   groundLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   wallLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   groundCheckDistance: 0.1
   wallCheckDistance: 0.5

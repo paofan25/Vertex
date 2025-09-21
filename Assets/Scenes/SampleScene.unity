@@ -1067,6 +1067,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 642887175}
+  - component: {fileID: 642887176}
   m_Layer: 6
   m_Name: leftPoint
   m_TagString: Untagged
@@ -1089,6 +1090,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2050052170}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &642887176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642887174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e75b09f7cd677994c8ec822e87947989, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundLayers:
+    serializedVersion: 2
+    m_Bits: 128
+  checkDistance: 0.1
+  boxSize: {x: 0.8, y: 0.1}
+  rayCount: 3
+  showDebug: 1
 --- !u!1 &762002716
 GameObject:
   m_ObjectHideFlags: 0
@@ -5262,6 +5282,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2050052170}
   - component: {fileID: 2050052169}
+  - component: {fileID: 2050052176}
+  - component: {fileID: 2050052175}
   - component: {fileID: 2050052168}
   - component: {fileID: 2050052167}
   - component: {fileID: 2050052172}
@@ -5522,6 +5544,37 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2050052175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2050052166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30d01b1a82bd5a24f94d9483b48f6b5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+  inputAdapter: {fileID: 0}
+  groundChecker: {fileID: 0}
+  animator: {fileID: 0}
+  spriteRenderer: {fileID: 0}
+  movementData: {fileID: 11400000, guid: 6249e626d91ee6d4aad92d7e1f103699, type: 2}
+--- !u!114 &2050052176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2050052166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81eb9966ca14c5a44b430bf17fd37e65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gatherInput: {fileID: 2050052171}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
