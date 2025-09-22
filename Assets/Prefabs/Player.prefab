@@ -167,3 +167,5 @@ MonoBehaviour:
     m_Bits: 64
   speed: 5
   horizontal: 0
+  knockBack: 7
+  drag: 2

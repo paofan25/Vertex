@@ -21,6 +21,7 @@ public class EnterRoom : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             confiner.gameObject.SetActive(true); // 进入场景时激活相机
+            EventBus.Publish(new GetCameraEvent(vcam)); // 发布获取相机事件
         }
     }
 

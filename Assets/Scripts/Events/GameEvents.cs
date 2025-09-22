@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
 public abstract class GameEvent { }
@@ -40,5 +41,18 @@ public class GetPlayerEvent : GameEvent
     public GetPlayerEvent(GameObject player)
     {
         this.player = player;
+    }
+}
+
+/// <summary>
+/// 获取相机物体
+/// </summary>
+public class GetCameraEvent : GameEvent
+{
+    public CinemachineVirtualCamera vcam;
+
+    public GetCameraEvent(CinemachineVirtualCamera vcam)
+    {
+        this.vcam = vcam;
     }
 }
