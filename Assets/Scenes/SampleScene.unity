@@ -5558,7 +5558,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   inputAdapter: {fileID: 0}
-  groundChecker: {fileID: 0}
+  groundChecker: {fileID: 642887176}
   animator: {fileID: 0}
   spriteRenderer: {fileID: 0}
   movementData: {fileID: 11400000, guid: 6249e626d91ee6d4aad92d7e1f103699, type: 2}

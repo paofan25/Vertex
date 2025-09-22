@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 /// <summary>
@@ -15,7 +16,11 @@ public class GroundChecker : MonoBehaviour
     [SerializeField] private bool showDebug = true;
     
     private bool isGrounded;
-    
+
+    private void Update(){
+        CheckGrounded();
+    }
+
     /// <summary>
     /// 检测是否在地面
     /// </summary>
@@ -42,6 +47,7 @@ public class GroundChecker : MonoBehaviour
         }
         
         isGrounded = boxHit || rayHit;
+        Debug.Log(isGrounded);
         return isGrounded;
     }
     

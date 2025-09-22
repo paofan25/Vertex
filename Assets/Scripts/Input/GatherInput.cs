@@ -81,8 +81,6 @@ public class GatherInput : MonoBehaviour
             dashInput = true;
         }
         
-        // 跳跃按键持续检测
-        jumpHeld = Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Z);
         
         // 垂直输入（用于攀爬和快速下落）
         valueY = Input.GetAxisRaw("Vertical");
@@ -114,6 +112,7 @@ public class GatherInput : MonoBehaviour
     private void JumpStart(InputAction.CallbackContext context)
     {
         jumpInput = true; // 设置跳跃输入标志
+        jumpHeld = true;
     }
     
     /// <summary>
