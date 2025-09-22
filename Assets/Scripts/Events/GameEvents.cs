@@ -29,3 +29,16 @@ public class CanInputEvent : GameEvent
         this.canInput = canInput;
     }
 }
+
+/// <summary>
+/// 获取角色物体
+/// </summary>
+public class GetPlayerEvent : GameEvent
+{
+    public GameObject player;
+
+    public GetPlayerEvent(GameObject player)
+    {
+        this.player = player;
+    }
+}

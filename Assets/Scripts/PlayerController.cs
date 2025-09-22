@@ -8,7 +8,6 @@ public class PlayerController : MonoBehaviour
 {
     public Rigidbody2D rb; // 玩家刚体
     public LayerMask spikeLayer; // 刺的层
-    public CinemachineVirtualCamera vcam; // 虚拟摄像机
     
     public float speed = 5; // 移动速度
     public float horizontal; // 水平输入
@@ -18,13 +17,6 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>(); // 获取刚体组件
-        vcam = FindObjectOfType<CinemachineVirtualCamera>(); // 获取虚拟摄像机
-    }
-
-    private void Start()
-    {
-        vcam.Follow = transform; // 设置虚拟摄像机的跟随对象为玩家
-        vcam.LookAt = transform; // 设置虚拟摄像机的观察对象为玩家
     }
 
     private void Update()
