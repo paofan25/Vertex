@@ -25,13 +25,13 @@ public class JumpingState : IPlayerState
         }
         
         // 检查是否主动抓墙(不在地面上时才能)
-        if (stateMachine.inputAdapter.GrabHeld && stateMachine.IsAgainstWall && !stateMachine.IsGrounded) {
+        if (stateMachine.inputAdapter.GrabHeld && stateMachine.IsAgainstWall && !stateMachine.IsGrounded && stateMachine.CurrentStamina > 0) {
             stateMachine.ChangeState<ClimbingState>();
             Debug.Log("Climbing");
             return;
         }
         // 检查状态转换
-        if (stateMachine.inputAdapter.GrabHeld && stateMachine.IsAgainstWall && !stateMachine.IsGrounded)
+        if (stateMachine.inputAdapter.GrabHeld && stateMachine.IsAgainstWall && !stateMachine.IsGrounded && stateMachine.CurrentStamina > 0)
         {
             Debug.Log("[State Switch] Jumping -> Climbing | Reason: GrabHeld and Against Wall");
             stateMachine.ChangeState<ClimbingState>();

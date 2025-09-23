@@ -13,7 +13,7 @@ public class FallingState : IPlayerState
     public void Update(PlayerStateMachine stateMachine)
     {
         // 检查是否主动抓墙(不在地面上时才能)
-        if (stateMachine.inputAdapter.GrabHeld && stateMachine.IsAgainstWall && !stateMachine.IsGrounded)
+        if (stateMachine.inputAdapter.GrabHeld && stateMachine.IsAgainstWall && !stateMachine.IsGrounded && stateMachine.CurrentStamina > 0)
         {
             Debug.Log("[State Switch] Falling -> Climbing | Reason: GrabHeld and Against Wall");
             stateMachine.ChangeState<ClimbingState>();

@@ -85,7 +85,8 @@ public class PlayerStateMachine : MonoBehaviour
             { typeof(FallingState), new FallingState() },
             { typeof(DashState), new DashState() },
             { typeof(WallSlideState), new WallSlideState() },
-            { typeof(ClimbingState), new ClimbingState() }
+            { typeof(ClimbingState), new ClimbingState() },
+            { typeof(WallJumpState), new WallJumpState() }
         };
     }
     

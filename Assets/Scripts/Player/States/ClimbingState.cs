@@ -29,6 +29,13 @@ public class ClimbingState : IPlayerState
             stateMachine.ChangeState<FallingState>();
             return;
         }
+
+        // 如果按下跳跃键，则执行墙壁跳跃
+        if (stateMachine.inputAdapter.JumpPressed)
+        {
+            stateMachine.ChangeState<WallJumpState>();
+            return;
+        }
     }
 
     public void FixedUpdate(PlayerStateMachine stateMachine)
