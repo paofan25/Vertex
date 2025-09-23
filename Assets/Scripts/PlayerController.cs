@@ -25,10 +25,10 @@ public class PlayerController : MonoBehaviour
     {
         if (!canInput) return; // 禁止输入则返回
         
-        GetInput(); // 获取输入
+        // GetInput(); // 获取输入
         if (Input.GetButtonDown("Jump"))
         {
-            Jump(); // 跳跃
+            // Jump(); // 跳跃
         }
     }
 
@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!canInput) return; // 禁止输入则返回
         
-        Movement(); // 移动
+        // Movement(); // 移动
     }
     
     #region -----------------------------------和角色死亡脚本一起用-------------------------------------------
@@ -69,23 +69,23 @@ public class PlayerController : MonoBehaviour
     #endregion-----------------------------------和角色死亡脚本一起用-------------------------------------------
 
     
-    #region-----------------------------------这部分是调试用的临时移动方法，直接删除替换即可-------------------------------------------
-    // 获取输入
-    private void GetInput()
-    {
-        horizontal = Input.GetAxisRaw("Horizontal"); // 获取水平输入
-    }
-
-    // 移动
-    private void Movement()
-    {
-        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y); // 设置刚体的速度
-    }
-
-    // 跳跃
-    private void Jump()
-    {
-        rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse); // 给刚体施加一个向上的力
-    }
-    #endregion-----------------------------------这部分是调试用的临时移动方法，直接删除替换即可-------------------------------------------
+    // #region-----------------------------------这部分是调试用的临时移动方法，直接删除替换即可-------------------------------------------
+    // // 获取输入
+    // private void GetInput()
+    // {
+    //     horizontal = Input.GetAxisRaw("Horizontal"); // 获取水平输入
+    // }
+    //
+    // // 移动
+    // private void Movement()
+    // {
+    //     rb.velocity = new Vector2(horizontal * speed, rb.velocity.y); // 设置刚体的速度
+    // }
+    //
+    // // 跳跃
+    // private void Jump()
+    // {
+    //     rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse); // 给刚体施加一个向上的力
+    // }
+    // #endregion-----------------------------------这部分是调试用的临时移动方法，直接删除替换即可-------------------------------------------
 }
