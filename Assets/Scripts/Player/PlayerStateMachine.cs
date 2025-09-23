@@ -12,9 +12,10 @@ public class PlayerStateMachine : MonoBehaviour
     public GroundChecker groundChecker;
     public Animator animator;
     public SpriteRenderer spriteRenderer;
+    public LocomotionMotor2D motor;
     
     [Header("参数配置")]
-    public PlayerMovementData movementData;
+    public MovementData movementData;
     
     // 状态管理
     private IPlayerState currentState;
@@ -24,12 +25,11 @@ public class PlayerStateMachine : MonoBehaviour
     public Vector2 Velocity => rb.velocity;
     public bool IsGrounded => groundChecker.IsGrounded;
     public int FacingDirection { get; private set; } = 1;
-    
+    public bool IsAgainstWall { get; private set; }
     // 状态数据
-    public float CoyoteTimer { get; set; }
-    public float JumpBufferTimer { get; set; }
     public float DashCooldownTimer { get; set; }
     public bool CanDash { get; set; } = true;
+    public float CurrentStamina { get; set; }
     
     private void Awake()
     {
@@ -39,12 +39,15 @@ public class PlayerStateMachine : MonoBehaviour
     
     private void Start()
     {
+        CurrentStamina = movementData.climbStamina;
         ChangeState<IdleState>();
     }
     
     private void Update()
     {
         UpdateTimers();
+        UpdateStamina();
+        CheckWall();
         currentState?.Update(this);
     }
     
@@ -52,7 +55,10 @@ public class PlayerStateMachine : MonoBehaviour
     {
         currentState?.FixedUpdate(this);
     }
-    
+
+    public void SetVelocity(Vector2 velocity){
+        rb.velocity = velocity;
+    }
     /// <summary>
     /// 初始化组件
     /// </summary>
@@ -63,6 +69,7 @@ public class PlayerStateMachine : MonoBehaviour
         if (groundChecker == null) groundChecker = GetComponent<GroundChecker>();
         if (animator == null) animator = GetComponent<Animator>();
         if (spriteRenderer == null) spriteRenderer = GetComponent<SpriteRenderer>();
+        if (motor == null) motor = GetComponent<LocomotionMotor2D>();
     }
     
     /// <summary>
@@ -78,7 +85,6 @@ public class PlayerStateMachine : MonoBehaviour
             { typeof(FallingState), new FallingState() },
             { typeof(DashState), new DashState() },
             { typeof(WallSlideState), new WallSlideState() },
-            { typeof(WallJumpState), new WallJumpState() },
             { typeof(ClimbingState), new ClimbingState() }
         };
     }
@@ -92,6 +98,7 @@ public class PlayerStateMachine : MonoBehaviour
         {
             currentState?.Exit(this);
             currentState = newState;
+            Debug.Log(newState);
             currentState.Enter(this);
         }
     }
@@ -101,22 +108,80 @@ public class PlayerStateMachine : MonoBehaviour
     /// </summary>
     private void UpdateTimers()
     {
-        // 土狼时间
-        if (IsGrounded)
-            CoyoteTimer = movementData.coyoteTime;
-        else
-            CoyoteTimer -= Time.deltaTime;
-        
-        // 跳跃缓冲
-        if (inputAdapter.JumpPressed)
-            JumpBufferTimer = movementData.jumpBufferTime;
-        else
-            JumpBufferTimer -= Time.deltaTime;
-        
         // 冲刺冷却
         if (DashCooldownTimer > 0)
+        {
             DashCooldownTimer -= Time.deltaTime;
+            Debug.Log($"Dash Cooldown: {DashCooldownTimer:F2}");
+            if (DashCooldownTimer <= 0 && IsGrounded)
+            {
+                ResetDash();
+            }
+        }
     }
+    
+    /// <summary>
+    /// 更新耐力
+    /// </summary>
+    private void UpdateStamina()
+    {
+        // 只有在不攀爬且不紧贴墙壁时才恢复耐力
+        if (currentState.GetType() != typeof(ClimbingState) && !IsAgainstWall)
+        {
+            RestoreStamina(movementData.staminaRegenRate * Time.deltaTime);
+        }
+    }
+
+    /// <summary>
+    /// 消耗耐力
+    /// </summary>
+    public void ConsumeStamina(float amount)
+    {
+        CurrentStamina = Mathf.Max(0, CurrentStamina - amount);
+        Debug.Log($"[Stamina] Consumed: {amount}. Current: {CurrentStamina}");
+    }
+
+    /// <summary>
+    /// 恢复耐力
+    /// </summary>
+    public void RestoreStamina(float amount)
+    {
+        float oldStamina = CurrentStamina;
+        CurrentStamina = Mathf.Min(movementData.climbStamina, CurrentStamina + amount);
+        if (CurrentStamina > oldStamina)
+        {
+            Debug.Log($"[Stamina] Restored: {amount}. Current: {CurrentStamina}");
+        }
+    }
+
+    /// <summary>
+    /// 接触平台时重置冲刺能力
+    /// </summary>
+    public void ResetDash()
+    {
+        CanDash = true;
+    }
+
+    /// <summary>
+    /// 接触平台时重置体力
+    /// </summary>
+    public void ResetStamina()
+    {
+        CurrentStamina = movementData.climbStamina;
+    }
+
+    private void CheckWall()
+    {
+        // 我们需要同时检测左右两边，因为玩家可能背对着墙按“抓墙”
+        bool wallOnLeft = Physics2D.Raycast(transform.position, Vector2.left,
+            movementData.wallCheckDistance, movementData.wallLayer);
+            
+        bool wallOnRight = Physics2D.Raycast(transform.position, Vector2.right,
+            movementData.wallCheckDistance, movementData.wallLayer);
+
+        IsAgainstWall = wallOnLeft || wallOnRight;
+    }
+
     
     /// <summary>
     /// 翻转角色
@@ -128,14 +193,6 @@ public class PlayerStateMachine : MonoBehaviour
             FacingDirection = direction;
             spriteRenderer.flipX = FacingDirection < 0;
         }
-    }
-    
-    /// <summary>
-    /// 设置速度
-    /// </summary>
-    public void SetVelocity(Vector2 velocity)
-    {
-        rb.velocity = velocity;
     }
     
     /// <summary>

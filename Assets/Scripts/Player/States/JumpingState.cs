@@ -5,9 +5,6 @@ using UnityEngine;
 /// </summary>
 public class JumpingState : IPlayerState
 {
-    private bool canVariableJump;
-    private float jumpHoldTimer;
-    
     public void Enter(PlayerStateMachine stateMachine)
     {
         // 执行跳跃
@@ -15,27 +12,32 @@ public class JumpingState : IPlayerState
         velocity.y = stateMachine.movementData.jumpForce;
         stateMachine.SetVelocity(velocity);
         
-        // 重置计时器
-        stateMachine.JumpBufferTimer = 0f;
-        stateMachine.CoyoteTimer = 0f;
-        
-        // 启用变速跳跃
-        canVariableJump = true;
-        jumpHoldTimer = 0f;
-        
         // 触发跳跃事件
         AudioManager.Instance?.PlaySFX("Jump");
     }
     
     public void Update(PlayerStateMachine stateMachine)
     {
-        // 变速跳跃计时
-        if (stateMachine.inputAdapter.JumpHeld && canVariableJump)
-            jumpHoldTimer += Time.deltaTime;
-        else if (!stateMachine.inputAdapter.JumpHeld)
-            canVariableJump = false;
+        // 可变跳跃：如果松开跳跃键，则缩短跳跃高度
+        if (stateMachine.Velocity.y > 0 && !stateMachine.inputAdapter.JumpHeld)
+        {
+            stateMachine.SetVelocity(new Vector2(stateMachine.Velocity.x, 0));
+        }
         
+        // 检查是否主动抓墙(不在地面上时才能)
+        if (stateMachine.inputAdapter.GrabHeld && stateMachine.IsAgainstWall && !stateMachine.IsGrounded) {
+            stateMachine.ChangeState<ClimbingState>();
+            Debug.Log("Climbing");
+            return;
+        }
         // 检查状态转换
+        if (stateMachine.inputAdapter.GrabHeld && stateMachine.IsAgainstWall && !stateMachine.IsGrounded)
+        {
+            Debug.Log("[State Switch] Jumping -> Climbing | Reason: GrabHeld and Against Wall");
+            stateMachine.ChangeState<ClimbingState>();
+            return;
+        }
+
         if (stateMachine.Velocity.y <= 0)
         {
             stateMachine.ChangeState<FallingState>();
@@ -57,13 +59,6 @@ public class JumpingState : IPlayerState
         velocity.x = Mathf.MoveTowards(velocity.x, targetVelocityX, 
             stateMachine.movementData.runSpeed * stateMachine.movementData.airControl * Time.fixedDeltaTime * 10f);
         
-        // 变速跳跃：释放跳跃键时增加重力
-        if (!stateMachine.inputAdapter.JumpHeld && canVariableJump)
-        {
-            velocity.y = Mathf.Max(velocity.y * 0.5f, stateMachine.movementData.minJumpForce);
-            canVariableJump = false;
-        }
-        
         stateMachine.SetVelocity(velocity);
         
         // 翻转角色
@@ -75,6 +70,5 @@ public class JumpingState : IPlayerState
     
     public void Exit(PlayerStateMachine stateMachine)
     {
-        canVariableJump = false;
     }
 }

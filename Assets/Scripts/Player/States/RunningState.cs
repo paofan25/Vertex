@@ -12,27 +12,39 @@ public class RunningState : IPlayerState
     
     public void Update(PlayerStateMachine stateMachine)
     {
+        // 检查是否主动抓墙
+        if (stateMachine.inputAdapter.GrabHeld && stateMachine.IsAgainstWall && !stateMachine.IsGrounded)
+        {
+            Debug.Log("[State Switch] Running -> Climbing | Reason: GrabHeld and Against Wall");
+            stateMachine.ChangeState<ClimbingState>();
+            return;
+        }
+
         // 检查状态转换
         if (!stateMachine.IsGrounded)
         {
+            // Debug.Log("[RunningState] Not Grounded -> FallingState");
             stateMachine.ChangeState<FallingState>();
             return;
         }
         
         if (Mathf.Abs(stateMachine.inputAdapter.MoveX) <= 0.1f)
         {
+            // Debug.Log("[RunningState] No Input -> IdleState");
             stateMachine.ChangeState<IdleState>();
             return;
         }
         
-        if (stateMachine.JumpBufferTimer > 0 && stateMachine.CoyoteTimer > 0)
+        if (stateMachine.inputAdapter.JumpPressed)
         {
+            // Debug.Log("[RunningState] Jump Pressed -> JumpingState");
             stateMachine.ChangeState<JumpingState>();
             return;
         }
         
         if (stateMachine.inputAdapter.DashPressed && stateMachine.CanDash && stateMachine.DashCooldownTimer <= 0)
         {
+            // Debug.Log("[RunningState] Dash Pressed -> DashState");
             stateMachine.ChangeState<DashState>();
             return;
         }
@@ -40,12 +52,9 @@ public class RunningState : IPlayerState
     
     public void FixedUpdate(PlayerStateMachine stateMachine)
     {
-        // 水平移动
-        float targetVelocityX = stateMachine.inputAdapter.MoveX * stateMachine.movementData.runSpeed;
-        Vector2 velocity = stateMachine.Velocity;
-        velocity.x = Mathf.MoveTowards(velocity.x, targetVelocityX, 
-            stateMachine.movementData.runSpeed * Time.fixedDeltaTime * 10f);
-        stateMachine.SetVelocity(velocity);
+        // 将物理移动委托给Motor
+        // Debug.Log($"[RunningState] MoveX Input: {stateMachine.inputAdapter.MoveX}");
+        stateMachine.motor.HandleGroundMovement(stateMachine.inputAdapter.MoveX);
         
         // 翻转角色
         if (stateMachine.inputAdapter.MoveX != 0)

@@ -12,14 +12,23 @@ public class FallingState : IPlayerState
     
     public void Update(PlayerStateMachine stateMachine)
     {
-        // 检查状态转换
+        // 检查是否主动抓墙(不在地面上时才能)
+        if (stateMachine.inputAdapter.GrabHeld && stateMachine.IsAgainstWall && !stateMachine.IsGrounded)
+        {
+            Debug.Log("[State Switch] Falling -> Climbing | Reason: GrabHeld and Against Wall");
+            stateMachine.ChangeState<ClimbingState>();
+            return;
+        }
+
         if (stateMachine.IsGrounded)
         {
             // 着地音效和震屏
             AudioManager.Instance?.PlaySFX("Land");
             CameraShaker.Instance?.Shake(0.05f, 0.1f);
             
-            stateMachine.CanDash = true; // 着地恢复冲刺
+            // 接触平台，重置冲刺和体力
+            stateMachine.ResetDash();
+            stateMachine.ResetStamina();
             
             if (Mathf.Abs(stateMachine.inputAdapter.MoveX) > 0.1f)
                 stateMachine.ChangeState<RunningState>();
@@ -28,12 +37,6 @@ public class FallingState : IPlayerState
             return;
         }
         
-        // 土狼时间内可以跳跃
-        if (stateMachine.JumpBufferTimer > 0 && stateMachine.CoyoteTimer > 0)
-        {
-            stateMachine.ChangeState<JumpingState>();
-            return;
-        }
         
         if (stateMachine.inputAdapter.DashPressed && stateMachine.CanDash && stateMachine.DashCooldownTimer <= 0)
         {
@@ -44,6 +47,7 @@ public class FallingState : IPlayerState
         // 检查墙面交互
         if (CheckWallSlide(stateMachine))
         {
+            Debug.Log("[State Switch] Falling -> WallSlide | Reason: Against Wall and Horizontal Input");
             stateMachine.ChangeState<WallSlideState>();
             return;
         }
@@ -91,7 +95,7 @@ public class FallingState : IPlayerState
         Vector2 rayDirection = new Vector2(stateMachine.inputAdapter.MoveX > 0 ? 1 : -1, 0);
         
         RaycastHit2D hit = Physics2D.Raycast(rayOrigin, rayDirection, 
-            stateMachine.movementData.wallCheckDistance, stateMachine.movementData.wallLayers);
+            stateMachine.movementData.wallCheckDistance, stateMachine.movementData.wallLayer);
         
         return hit.collider != null;
     }

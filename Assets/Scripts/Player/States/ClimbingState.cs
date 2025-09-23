@@ -5,103 +5,60 @@ using UnityEngine;
 /// </summary>
 public class ClimbingState : IPlayerState
 {
-    private float currentStamina;
-    private bool isClimbing;
-    private PlayerStateMachine cachedStateMachine;
-    
     public void Enter(PlayerStateMachine stateMachine)
     {
-        cachedStateMachine = stateMachine;
-        currentStamina = stateMachine.movementData.climbStamina;
-        isClimbing = true;
-        
-        // 停止垂直速度
-        Vector2 velocity = stateMachine.Velocity;
-        velocity.y = 0;
-        stateMachine.SetVelocity(velocity);
+        // 附着在墙上时，速度清零
+        stateMachine.SetVelocity(Vector2.zero);
     }
-    
+
     public void Update(PlayerStateMachine stateMachine)
     {
-        // 检查状态转换
-        if (stateMachine.IsGrounded)
+        // 添加详细调试日志
+        Debug.Log($"[Climbing Update] GrabHeld: {stateMachine.inputAdapter.GrabHeld}, IsAgainstWall: {stateMachine.IsAgainstWall}, Stamina: {stateMachine.CurrentStamina}");
+
+        // 如果松开抓墙键，或者离开墙壁，则切换到下落
+        if (!stateMachine.inputAdapter.GrabHeld || !stateMachine.IsAgainstWall)
         {
-            if (Mathf.Abs(stateMachine.inputAdapter.MoveX) > 0.1f)
-                stateMachine.ChangeState<RunningState>();
-            else
-                stateMachine.ChangeState<IdleState>();
+            stateMachine.ChangeState<FallingState>();
             return;
         }
-        
-        // 跳跃离开墙面
-        if (stateMachine.JumpBufferTimer > 0)
-        {
-            stateMachine.ChangeState<WallJumpState>();
-            return;
-        }
-        
-        // 冲刺
-        if (stateMachine.inputAdapter.DashPressed && stateMachine.CanDash && stateMachine.DashCooldownTimer <= 0)
-        {
-            stateMachine.ChangeState<DashState>();
-            return;
-        }
-        
-        // 离开墙面或耐力耗尽
-        if (!IsAgainstWall(stateMachine) || currentStamina <= 0 || 
-            stateMachine.inputAdapter.MoveX * stateMachine.FacingDirection <= 0)
+
+        // 如果体力耗尽，则切换到下落
+        if (stateMachine.CurrentStamina <= 0)
         {
             stateMachine.ChangeState<FallingState>();
             return;
         }
     }
-    
+
     public void FixedUpdate(PlayerStateMachine stateMachine)
     {
-        Vector2 velocity = stateMachine.Velocity;
+        float moveY = stateMachine.inputAdapter.MoveY;
         
-        // 攀爬移动
-        if (Mathf.Abs(stateMachine.inputAdapter.MoveY) > 0.1f && currentStamina > 0)
+        // 根据是否有垂直输入来决定移动和体力消耗
+        if (Mathf.Abs(moveY) > 0.1f)
         {
-            velocity.y = stateMachine.inputAdapter.MoveY * stateMachine.movementData.climbSpeed;
-            currentStamina -= Time.fixedDeltaTime;
+            // 向上移动消耗更多体力
+            float staminaCost = (moveY > 0) ? stateMachine.movementData.climbUpStaminaCost : stateMachine.movementData.climbHoldStaminaCost;
+            stateMachine.ConsumeStamina(staminaCost * Time.fixedDeltaTime);
+            
+            // 垂直移动
+            stateMachine.motor.SetVelocityY(moveY * stateMachine.movementData.climbSpeed);
         }
         else
         {
-            velocity.y = 0;
-            // 恢复耐力（当不在攀爬时）
-            if (Mathf.Abs(stateMachine.inputAdapter.MoveY) <= 0.1f)
-            {
-                currentStamina = Mathf.Min(stateMachine.movementData.climbStamina, 
-                    currentStamina + stateMachine.movementData.staminaRegenRate * Time.fixedDeltaTime);
-            }
+            // 悬停时消耗较少体力
+            stateMachine.ConsumeStamina(stateMachine.movementData.climbHoldStaminaCost * Time.fixedDeltaTime);
+            stateMachine.motor.SetVelocityY(0);
         }
         
-        velocity.x = 0; // 贴墙
-        stateMachine.SetVelocity(velocity);
-        stateMachine.UpdateAnimator();
+        // 强制将水平速度清零以吸附在墙上
+        stateMachine.motor.SetVelocityX(0);
     }
-    
+
     public void Exit(PlayerStateMachine stateMachine)
     {
-        isClimbing = false;
-        cachedStateMachine = null;
     }
     
-    /// <summary>
-    /// 检查是否贴着墙面
-    /// </summary>
-    private bool IsAgainstWall(PlayerStateMachine stateMachine)
-    {
-        Vector2 rayOrigin = stateMachine.transform.position;
-        Vector2 rayDirection = new Vector2(stateMachine.FacingDirection, 0);
-        
-        RaycastHit2D hit = Physics2D.Raycast(rayOrigin, rayDirection, 
-            stateMachine.movementData.wallCheckDistance, stateMachine.movementData.wallLayers);
-        
-        return hit.collider != null;
-    }
     
-    public float CurrentStamina => currentStamina;
-    public float MaxStamina => cachedStateMachine?.movementData.climbStamina ?? 0f;
 }

@@ -12,7 +12,20 @@ public class IdleState : IPlayerState
     
     public void Update(PlayerStateMachine stateMachine)
     {
+        // 检查是否主动抓墙(不在地面上时才能)
+        if (stateMachine.inputAdapter.GrabHeld && stateMachine.IsAgainstWall && !stateMachine.IsGrounded) {
+            stateMachine.ChangeState<ClimbingState>();
+            return;
+        }
+
         // 检查状态转换
+        if (stateMachine.inputAdapter.GrabHeld && stateMachine.IsAgainstWall && !stateMachine.IsGrounded)
+        {
+            Debug.Log("[State Switch] Idle -> Climbing | Reason: GrabHeld and Against Wall");
+            stateMachine.ChangeState<ClimbingState>();
+            return;
+        }
+
         if (!stateMachine.IsGrounded)
         {
             stateMachine.ChangeState<FallingState>();
@@ -25,7 +38,7 @@ public class IdleState : IPlayerState
             return;
         }
         
-        if (stateMachine.JumpBufferTimer > 0 && stateMachine.CoyoteTimer > 0)
+        if (stateMachine.inputAdapter.JumpPressed)
         {
             stateMachine.ChangeState<JumpingState>();
             return;

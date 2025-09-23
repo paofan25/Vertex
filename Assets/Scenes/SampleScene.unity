@@ -5284,6 +5284,7 @@ GameObject:
   - component: {fileID: 2050052169}
   - component: {fileID: 2050052176}
   - component: {fileID: 2050052175}
+  - component: {fileID: 2050052177}
   - component: {fileID: 2050052168}
   - component: {fileID: 2050052167}
   - component: {fileID: 2050052172}
@@ -5561,7 +5562,8 @@ MonoBehaviour:
   groundChecker: {fileID: 642887176}
   animator: {fileID: 0}
   spriteRenderer: {fileID: 0}
-  movementData: {fileID: 11400000, guid: 6249e626d91ee6d4aad92d7e1f103699, type: 2}
+  motor: {fileID: 2050052177}
+  movementData: {fileID: 11400000, guid: 50214f891b65fc241a377289d59dbf4c, type: 2}
 --- !u!114 &2050052176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5575,6 +5577,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gatherInput: {fileID: 2050052171}
+--- !u!114 &2050052177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2050052166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de199197e520a15489940c610a9744b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

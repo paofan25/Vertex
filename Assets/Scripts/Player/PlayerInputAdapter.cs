@@ -14,7 +14,7 @@ public class PlayerInputAdapter : MonoBehaviour
     public bool JumpPressed => gatherInput.jumpInput;
     public bool JumpHeld => gatherInput.jumpHeld;
     public bool DashPressed => gatherInput.dashInput;
-    
+    public bool GrabHeld => gatherInput.grabHeld;
     // 输入事件
     public System.Action OnJumpPressed;
     public System.Action OnJumpReleased;

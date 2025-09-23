@@ -47,7 +47,7 @@ public class GroundChecker : MonoBehaviour
         }
         
         isGrounded = boxHit || rayHit;
-        Debug.Log(isGrounded);
+        // Debug.Log(isGrounded);
         return isGrounded;
     }
     

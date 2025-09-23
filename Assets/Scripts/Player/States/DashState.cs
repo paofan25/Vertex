@@ -13,12 +13,20 @@ public class DashState : IPlayerState
     public void Enter(PlayerStateMachine stateMachine)
     {
         // 确定冲刺方向
-        dashDirection = new Vector2(stateMachine.inputAdapter.MoveX, stateMachine.inputAdapter.MoveY).normalized;
-        if (dashDirection == Vector2.zero)
+        Vector2 inputDirection = new Vector2(stateMachine.inputAdapter.MoveX, stateMachine.inputAdapter.MoveY);
+        if (inputDirection.magnitude < 0.1f)
+        {
+            // 如果没有方向输入，则使用角色朝向
             dashDirection = new Vector2(stateMachine.FacingDirection, 0);
+        }
+        else
+        {
+            // 否则，使用输入方向
+            dashDirection = inputDirection.normalized;
+        }
         
         // 设置冲刺速度
-        stateMachine.SetVelocity(dashDirection * stateMachine.movementData.dashSpeed);
+        stateMachine.SetVelocity(dashDirection * stateMachine.movementData.dashForce);
         
         // 重置计时器和状态
         dashTimer = stateMachine.movementData.dashDuration;
@@ -43,7 +51,6 @@ public class DashState : IPlayerState
             // 冲刺结束，根据当前状态切换
             if (stateMachine.IsGrounded)
             {
-                stateMachine.CanDash = true; // 着地恢复冲刺
                 if (Mathf.Abs(stateMachine.inputAdapter.MoveX) > 0.1f)
                     stateMachine.ChangeState<RunningState>();
                 else
@@ -51,10 +58,7 @@ public class DashState : IPlayerState
             }
             else
             {
-                if (stateMachine.Velocity.y > 0)
-                    stateMachine.ChangeState<JumpingState>();
-                else
-                    stateMachine.ChangeState<FallingState>();
+                stateMachine.ChangeState<FallingState>();
             }
         }
     }
