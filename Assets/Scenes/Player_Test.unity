@@ -835,6 +835,7 @@ GameObject:
   - component: {fileID: 2087184279}
   - component: {fileID: 2087184280}
   - component: {fileID: 2087184281}
+  - component: {fileID: 2087184282}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Player
@@ -955,6 +956,7 @@ MonoBehaviour:
   jumpInput: 0
   jumpHeld: 0
   dashInput: 0
+  grabHeld: 0
 --- !u!114 &2087184275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1132,6 +1134,21 @@ MonoBehaviour:
   m_DefaultActionMap: 
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &2087184282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2087184270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25169bbe911f9d742952ebc84c2b7788, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveControls: {fileID: 0}
+  rb: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

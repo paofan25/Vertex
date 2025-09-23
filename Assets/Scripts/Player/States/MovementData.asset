@@ -42,8 +42,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   groundCheckDistance: 0.1
-  wallCheckDistance: 0.1
+  wallCheckDistance: 0.51
   iFramesDuration: 0.1
-  climbStamina: 10
+  climbStamina: 100
   climbSpeed: 5
   staminaRegenRate: 0.3
+  climbHoldStaminaCost: 1
+  climbUpStaminaCost: 2

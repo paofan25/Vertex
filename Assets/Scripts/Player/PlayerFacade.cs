@@ -9,6 +9,7 @@ public sealed class PlayerFacade : MonoBehaviour
     [Header("组件引用")]
     [SerializeField] private PlayerMoveControls moveControls;
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Animator animator;
     
     // 对外属性
     public Vector2 Velocity => rb.velocity;
@@ -31,6 +32,8 @@ public sealed class PlayerFacade : MonoBehaviour
             moveControls = GetComponent<PlayerMoveControls>();
         if (rb == null)
             rb = GetComponent<Rigidbody2D>();
+        if (animator == null)
+            animator = GetComponent<Animator>();
     }
     
     /// <summary>
@@ -60,6 +63,7 @@ public sealed class PlayerFacade : MonoBehaviour
     public void TriggerDeath()
     {
         EnableInput(false);
+        animator?.SetTrigger("Die");
         OnDie?.Invoke();
     }
     
