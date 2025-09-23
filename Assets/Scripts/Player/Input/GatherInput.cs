@@ -21,6 +21,15 @@ public class GatherInput : MonoBehaviour
         jumpInput = false;
         dashInput = false;
 
+        // 收集输入
+        GetImput();
+    }
+
+    /// <summary>
+    /// 收集输入
+    /// </summary>
+    private void GetImput()
+    {
         // 读取移动输入
         valueX = Input.GetAxisRaw("Horizontal");
         valueY = Input.GetAxisRaw("Vertical");
