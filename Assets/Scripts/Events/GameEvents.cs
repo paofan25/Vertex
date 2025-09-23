@@ -32,7 +32,7 @@ public class CanInputEvent : GameEvent
 }
 
 /// <summary>
-/// 获取角色物体
+/// 获取角色物体事件
 /// </summary>
 public class GetPlayerEvent : GameEvent
 {
@@ -45,7 +45,7 @@ public class GetPlayerEvent : GameEvent
 }
 
 /// <summary>
-/// 获取相机物体
+/// 获取相机物体事件
 /// </summary>
 public class GetCameraEvent : GameEvent
 {
@@ -56,3 +56,8 @@ public class GetCameraEvent : GameEvent
         this.vcam = vcam;
     }
 }
+
+/// <summary>
+/// 角色死亡事件
+/// </summary>
+public class OnPlayerDeathEvent : GameEvent { }

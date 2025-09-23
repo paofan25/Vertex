@@ -11,9 +11,8 @@ public class PlayerController : MonoBehaviour
     public LayerMask spikeLayer; // 刺的层
     
     public float speed = 5; // 移动速度
+    public float jumpForce = 7; // 跳跃力
     public float horizontal; // 水平输入
-    [SerializeField] private float knockBack = 2f; // 击退力
-    [SerializeField] private float drag = 2f; // 击退力
 
     private bool canInput = true; // 是否可以输入
 
@@ -40,25 +39,37 @@ public class PlayerController : MonoBehaviour
         Movement(); // 移动
     }
     
+    #region -----------------------------------和角色死亡脚本一起用-------------------------------------------
     private void OnEnable()
     {
         // 订阅事件
-        EventBus.Subscribe<CanInputEvent>(CanInput);
+        EventBus.Subscribe<CanInputEvent>(CanInput); // 订阅是否能够进行输入事件
     }
 
     private void OnDisable()
     {
         // 退订事件
-        EventBus.Unsubscribe<CanInputEvent>(CanInput);
+        EventBus.Unsubscribe<CanInputEvent>(CanInput); // 退订是否能够进行输入事件
     }
     
     private void OnTriggerEnter2D(Collider2D other)
     {
         // 如果碰到的物体在spikeLayer里
         if (spikeLayer == (spikeLayer | (1 << other.gameObject.layer)))
-            StartCoroutine(Die());
+            EventBus.Publish(new OnPlayerDeathEvent()); // 发布玩家死亡事件
     }
+    
+    // 是否能够进行输入
+    private void CanInput(GameEvent gameEvent)
+    {
+        CanInputEvent canInputEvent = (CanInputEvent)gameEvent;
+        
+        canInput = canInputEvent.canInput;
+    }
+    #endregion-----------------------------------和角色死亡脚本一起用-------------------------------------------
 
+    
+    #region-----------------------------------这部分是调试用的临时移动方法，直接删除替换即可-------------------------------------------
     // 获取输入
     private void GetInput()
     {
@@ -74,37 +85,7 @@ public class PlayerController : MonoBehaviour
     // 跳跃
     private void Jump()
     {
-        rb.AddForce(Vector2.up * 5f, ForceMode2D.Impulse); // 给刚体施加一个向上的力
+        rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse); // 给刚体施加一个向上的力
     }
-
-    // 玩家死亡
-    private IEnumerator Die()
-    {
-        EventBus.Publish(new CanInputEvent(false)); // 发布禁用输入事件
-        Vector2 moveDir = rb.velocity.normalized; // 获取移动方向
-        horizontal = 0; // 输入设置为0
-        rb.velocity = Vector2.zero; // 停止移动
-        rb.gravityScale = 0; // 取消重力
-
-        SpriteRenderer sr = GetComponent<SpriteRenderer>(); // 获取SpriteRenderer组件
-        sr.color = Color.gray; // 设置颜色为灰色
-        
-        Debug.Log("Die");
-
-        rb.drag = 10; // 设置角阻力
-        rb.AddForce(-moveDir * knockBack, ForceMode2D.Impulse); // 给刚体施加一个向后的力
-        CameraManager.Instance.ShakeCamera(); // 摄像机抖动
-        
-        yield return new WaitForSeconds(1f);
-        
-        GameManager.Instance.OnPlayerDeath(gameObject); // 调用GameManager的OnPlayerDeath方法
-    }
-
-    // 是否能够进行输入
-    private void CanInput(GameEvent gameEvent)
-    {
-        CanInputEvent canInputEvent = (CanInputEvent)gameEvent;
-        
-        canInput = canInputEvent.canInput;
-    }
+    #endregion-----------------------------------这部分是调试用的临时移动方法，直接删除替换即可-------------------------------------------
 }
