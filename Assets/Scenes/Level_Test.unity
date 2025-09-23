@@ -1224,7 +1224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0c49f40c1fec7d4ba0912f5d8af2965, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 6847893129074115657, guid: 4dcb1bcf8a15c3047911a1141bb4797f, type: 3}
+  playerPrefab: {fileID: 2457519643017696435, guid: 30c312a10c165a2458bdc2f2ec00dc61, type: 3}
   startPoint: {x: 0, y: 0}
   checkpoint: {x: 0, y: 0}
 --- !u!4 &1643440144
@@ -1254,7 +1254,7 @@ GameObject:
   - component: {fileID: 1923380550}
   - component: {fileID: 1923380549}
   - component: {fileID: 1923380551}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
