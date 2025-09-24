@@ -19,24 +19,20 @@ MonoBehaviour:
   jumpForce: 20
   upDrag: 4
   downForce: 0.3
-  minJumpForce: 1
-  jumpCutMultiplier: 0.5
-  jumpBufferTime: 0.1
-  coyoteTime: 0.15
   gravityScale: 3
   fallGravityScale: 5
   maxFallSpeed: 10
-  fastFallMultiplier: 2
   wallSlideSpeed: 15
   wallStickTime: 0.25
   wallJumpForce: 12
   wallJumpForceX: 12
   wallJumpForceY: 12
   wallJumpDirection: {x: 1, y: 1.2}
-  dashForce: 10
+  maxDashCount: 2
+  dashForce: 20
   dashDuration: 0.15
+  dashBackForce: 10
   dashCooldown: 1
-  maxDashCount: 1
   superDashExtraTime: 0.1
   groundLayer:
     serializedVersion: 2

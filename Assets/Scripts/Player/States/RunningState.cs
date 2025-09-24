@@ -8,6 +8,7 @@ public class RunningState : IPlayerState
     public void Enter(PlayerStateMachine stateMachine)
     {
         // 进入奔跑状态
+        stateMachine.animator.SetBool("isRunning", true);
         stateMachine.DashCount = stateMachine.movementData.maxDashCount; // 重置冲刺次数
     }
     
@@ -59,11 +60,12 @@ public class RunningState : IPlayerState
         if (stateMachine.inputAdapter.MoveX != 0)
             stateMachine.Flip(stateMachine.inputAdapter.MoveX > 0 ? 1 : -1);
         
-        stateMachine.UpdateAnimator();
+        // stateMachine.UpdateAnimator();
     }
     
     public void Exit(PlayerStateMachine stateMachine)
     {
         // 退出奔跑状态
+        stateMachine.animator.SetBool("isRunning", false);
     }
 }
