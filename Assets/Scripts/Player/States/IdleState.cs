@@ -8,7 +8,8 @@ public class IdleState : IPlayerState
     public void Enter(PlayerStateMachine stateMachine)
     {
         // 进入待机状态
-        stateMachine.rb.velocity = new Vector2(stateMachine.rb.velocity.x, 0);
+        stateMachine.rb.velocity = new Vector2(stateMachine.rb.velocity.x, 0); // 重置Y轴速度
+        stateMachine.DashCount = stateMachine.movementData.maxDashCount; // 重置冲刺次数
     }
     
     public void Update(PlayerStateMachine stateMachine)
@@ -27,29 +28,29 @@ public class IdleState : IPlayerState
             return;
         }
 
-        // 如果不在地面上，切换至坠落状态
+        // 如果【不在地面】上，切换至坠落状态
         if (!stateMachine.IsGrounded)
         {
             stateMachine.ChangeState<FallingState>();
             return;
         }
         
-        // 如果有水平输入，切换至奔跑状态
+        // 如果有【水平输入】，切换至奔跑状态
         if (Mathf.Abs(stateMachine.inputAdapter.MoveX) > 0.01f)
         {
             stateMachine.ChangeState<RunningState>();
             return;
         }
         
-        // 如果按下跳跃键，切换至跳跃状态
+        // 如果按下【跳跃键】，切换至跳跃状态
         if (stateMachine.inputAdapter.JumpPressed)
         {
             stateMachine.ChangeState<JumpingState>();
             return;
         }
         
-        // 如果按下冲刺键，切换至冲刺状态
-        if (stateMachine.inputAdapter.DashPressed && stateMachine.CanDash && stateMachine.DashCooldownTimer <= 0)
+        // 如果按下【冲刺键】且【不在冲刺中】且【有剩余冲刺次数】且【能够冲刺】，切换至冲刺状态
+        if (stateMachine.inputAdapter.DashPressed && !stateMachine.IsDashing && stateMachine.DashCount > 0 && stateMachine.CanDash)
         {
             stateMachine.ChangeState<DashState>();
             return;

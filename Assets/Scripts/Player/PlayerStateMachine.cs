@@ -7,29 +7,31 @@ using System.Collections.Generic;
 public class PlayerStateMachine : MonoBehaviour
 {
     [Header("组件引用")]
-    public Rigidbody2D rb;
-    public PlayerInputAdapter inputAdapter;
-    public GroundChecker groundChecker;
-    public Animator animator;
-    public SpriteRenderer spriteRenderer;
-    public LocomotionMotor2D motor;
+    public Rigidbody2D rb; // 刚体组件
+    public PlayerInputAdapter inputAdapter; // 输入适配器
+    public GroundChecker groundChecker; // 地面检测器
+    public Animator animator; // 动画控制器
+    public SpriteRenderer spriteRenderer; // 精灵渲染器
+    public LocomotionMotor2D motor; // 运动控制器
     
     [Header("参数配置")]
-    public MovementData movementData;
+    public MovementData movementData; // 运动数据
     
     // 状态管理
-    private IPlayerState currentState;
-    private Dictionary<System.Type, IPlayerState> states;
+    private IPlayerState currentState; // 当前状态
+    private Dictionary<System.Type, IPlayerState> states; // 状态字典
     
     // 公共属性
-    public Vector2 Velocity => rb.velocity;
-    public bool IsGrounded => groundChecker.IsGrounded;
-    public int FacingDirection { get; private set; } = 1;
-    public bool IsAgainstWall { get; private set; }
+    public Vector2 Velocity => rb.velocity; // 当前速度
+    public bool IsGrounded => groundChecker.IsGrounded; // 是否在地面上
+    public int FacingDirection { get; private set; } = 1; // 面向方向
+    public bool IsAgainstWall { get; private set; } = false; // 是否贴墙
     // 状态数据
-    public float DashCooldownTimer { get; set; }
-    public bool CanDash { get; set; } = true;
-    public float CurrentStamina { get; set; }
+    // public float DashCooldownTimer { get; set; } = 0f; // 冲刺冷却计时器
+    public int DashCount { get; set; } = 0; // 冲刺次数
+    public bool IsDashing { get; set; } = false; // 是否正在冲刺
+    public bool CanDash { get; set; } = true; // 是否可以冲刺
+    public float CurrentStamina { get; set; } = 0f; // 当前耐力值
     
     private void Awake()
     {
@@ -45,7 +47,7 @@ public class PlayerStateMachine : MonoBehaviour
     
     private void Update()
     {
-        UpdateTimers();
+        // UpdateTimers();
         UpdateStamina();
         CheckWall();
         currentState?.Update(this);
@@ -105,22 +107,22 @@ public class PlayerStateMachine : MonoBehaviour
         }
     }
     
-    /// <summary>
-    /// 更新计时器
-    /// </summary>
-    private void UpdateTimers()
-    {
-        // 冲刺冷却
-        if (DashCooldownTimer > 0)
-        {
-            DashCooldownTimer -= Time.deltaTime;
-            Debug.Log($"Dash Cooldown: {DashCooldownTimer:F2}");
-            if (DashCooldownTimer <= 0 && IsGrounded)
-            {
-                ResetDash();
-            }
-        }
-    }
+    // /// <summary>
+    // /// 更新计时器
+    // /// </summary>
+    // private void UpdateTimers()
+    // {
+    //     // 冲刺冷却
+    //     if (DashCooldownTimer > 0)
+    //     {
+    //         DashCooldownTimer -= Time.deltaTime;
+    //         // Debug.Log($"Dash Cooldown: {DashCooldownTimer:F2}");
+    //         if (DashCooldownTimer <= 0 && IsGrounded)
+    //         {
+    //             ResetDash();
+    //         }
+    //     }
+    // }
     
     /// <summary>
     /// 更新耐力

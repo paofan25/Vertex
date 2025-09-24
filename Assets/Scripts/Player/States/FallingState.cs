@@ -8,7 +8,6 @@ public class FallingState : IPlayerState
     public void Enter(PlayerStateMachine stateMachine)
     {
         // 进入下落状态
-        stateMachine.rb.drag = 0; // 重置阻尼
         stateMachine.rb.gravityScale = stateMachine.movementData.fallGravityScale; // 设置下落重力
     }
     
@@ -40,7 +39,8 @@ public class FallingState : IPlayerState
         }
         
         
-        if (stateMachine.inputAdapter.DashPressed && stateMachine.CanDash && stateMachine.DashCooldownTimer <= 0)
+        // 如果按下【冲刺键】且【不在冲刺中】且【有剩余冲刺次数】且【能够冲刺】，切换至冲刺状态
+        if (stateMachine.inputAdapter.DashPressed && !stateMachine.IsDashing && stateMachine.DashCount > 0 && stateMachine.CanDash)
         {
             stateMachine.ChangeState<DashState>();
             return;

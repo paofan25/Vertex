@@ -53,7 +53,8 @@ public class JumpingState : IPlayerState
         }
         
         
-        if (stateMachine.inputAdapter.DashPressed && stateMachine.CanDash && stateMachine.DashCooldownTimer <= 0)
+        // 如果按下【冲刺键】且【不在冲刺中】且【有剩余冲刺次数】且【能够冲刺】，切换至冲刺状态
+        if (stateMachine.inputAdapter.DashPressed && !stateMachine.IsDashing && stateMachine.DashCount > 0 && stateMachine.CanDash)
         {
             stateMachine.ChangeState<DashState>();
             return;
@@ -79,6 +80,6 @@ public class JumpingState : IPlayerState
     
     public void Exit(PlayerStateMachine stateMachine)
     {
-        
+        stateMachine.rb.drag = 0; // 重置阻尼
     }
 }

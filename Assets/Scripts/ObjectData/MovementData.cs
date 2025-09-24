@@ -31,12 +31,13 @@ public class MovementData : ScriptableObject
     public float wallJumpForceX = 12f;
     public float wallJumpForceY = 12f;
     public Vector2 wallJumpDirection = new Vector2(1f, 1.2f);
-    
-    [Header("冲刺")]
-    public float dashForce = 20f;
-    public float dashDuration = 0.15f;
+
+    [Header("冲刺")] 
+    [Tooltip("最大冲刺次数")] public int maxDashCount = 2;
+    [Tooltip("冲刺速度")] public float dashForce = 20f;
+    [Tooltip("冲刺持续时间")] public float dashDuration = 0.15f;
+    [Tooltip("冲刺反冲力")] public float dashBackForce = 10f;
     public float dashCooldown = 1f;
-    public int maxDashCount = 1;
     public float superDashExtraTime = 0.1f;
     
     [Header("地面检测")]

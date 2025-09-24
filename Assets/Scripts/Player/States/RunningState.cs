@@ -8,6 +8,7 @@ public class RunningState : IPlayerState
     public void Enter(PlayerStateMachine stateMachine)
     {
         // 进入奔跑状态
+        stateMachine.DashCount = stateMachine.movementData.maxDashCount; // 重置冲刺次数
     }
     
     public void Update(PlayerStateMachine stateMachine)
@@ -34,13 +35,15 @@ public class RunningState : IPlayerState
             return;
         }
         
+        // 如果按下【跳跃键】，切换至跳跃状态
         if (stateMachine.inputAdapter.JumpPressed)
         {
             stateMachine.ChangeState<JumpingState>();
             return;
         }
         
-        if (stateMachine.inputAdapter.DashPressed && stateMachine.CanDash && stateMachine.DashCooldownTimer <= 0)
+        // 如果按下【冲刺键】且【不在冲刺中】且【有剩余冲刺次数】且【能够冲刺】，切换至冲刺状态
+        if (stateMachine.inputAdapter.DashPressed && !stateMachine.IsDashing && stateMachine.DashCount > 0 && stateMachine.CanDash)
         {
             stateMachine.ChangeState<DashState>();
             return;

@@ -6,36 +6,23 @@ using System.Collections;
 /// </summary>
 public class DashState : IPlayerState
 {
-    private Vector2 dashDirection;
-    private float dashTimer;
-    private bool isInvincible;
+    private Vector2 dashDirection; // 冲刺方向
+    // private float dashTimer; // 冲刺计时器
+    // private bool isInvincible; // 无敌状态
     
     public void Enter(PlayerStateMachine stateMachine)
     {
-        // 确定冲刺方向
-        Vector2 inputDirection = new Vector2(stateMachine.inputAdapter.MoveX, stateMachine.inputAdapter.MoveY);
-        if (inputDirection.magnitude < 0.1f)
-        {
-            // 如果没有方向输入，则使用角色朝向
-            dashDirection = new Vector2(stateMachine.FacingDirection, 0);
-        }
-        else
-        {
-            // 否则，使用输入方向
-            dashDirection = inputDirection.normalized;
-        }
-        
-        // 设置冲刺速度
-        stateMachine.SetVelocity(dashDirection * stateMachine.movementData.dashForce);
+        // 调用冲刺协程
+        stateMachine.StartCoroutine(Dash(stateMachine));
         
         // 重置计时器和状态
-        dashTimer = stateMachine.movementData.dashDuration;
-        stateMachine.CanDash = false;
-        stateMachine.DashCooldownTimer = stateMachine.movementData.dashCooldown;
+        // dashTimer = stateMachine.movementData.dashDuration;
+        // stateMachine.CanDash = false;
+        // stateMachine.DashCooldownTimer = stateMachine.movementData.dashCooldown;
         
         // 启用无敌帧
-        isInvincible = true;
-        stateMachine.StartCoroutine(IFramesCoroutine(stateMachine));
+        // isInvincible = true;
+        // stateMachine.StartCoroutine(IFramesCoroutine(stateMachine));
         
         // 触发冲刺事件
         AudioManager.Instance?.PlaySFX("Dash");
@@ -44,23 +31,23 @@ public class DashState : IPlayerState
     
     public void Update(PlayerStateMachine stateMachine)
     {
-        dashTimer -= Time.deltaTime;
-        
-        if (dashTimer <= 0)
-        {
-            // 冲刺结束，根据当前状态切换
-            if (stateMachine.IsGrounded)
-            {
-                if (Mathf.Abs(stateMachine.inputAdapter.MoveX) > 0.1f)
-                    stateMachine.ChangeState<RunningState>();
-                else
-                    stateMachine.ChangeState<IdleState>();
-            }
-            else
-            {
-                stateMachine.ChangeState<FallingState>();
-            }
-        }
+        // dashTimer -= Time.deltaTime;
+        //
+        // if (dashTimer <= 0)
+        // {
+        //     // 冲刺结束，根据当前状态切换
+        //     if (stateMachine.IsGrounded)
+        //     {
+        //         if (Mathf.Abs(stateMachine.inputAdapter.MoveX) > 0.1f)
+        //             stateMachine.ChangeState<RunningState>();
+        //         else
+        //             stateMachine.ChangeState<IdleState>();
+        //     }
+        //     else
+        //     {
+        //         stateMachine.ChangeState<FallingState>();
+        //     }
+        // }
     }
     
     public void FixedUpdate(PlayerStateMachine stateMachine)
@@ -71,17 +58,55 @@ public class DashState : IPlayerState
     
     public void Exit(PlayerStateMachine stateMachine)
     {
-        isInvincible = false;
+        // isInvincible = false;
     }
-    
-    /// <summary>
-    /// 无敌帧协程
-    /// </summary>
-    private IEnumerator IFramesCoroutine(PlayerStateMachine stateMachine)
+
+    private IEnumerator Dash(PlayerStateMachine stateMachine)
     {
-        yield return new WaitForSeconds(stateMachine.movementData.iFramesDuration);
-        isInvincible = false;
+        stateMachine.DashCount--; // 减少冲刺次数
+        stateMachine.IsDashing = true; // 正在冲刺
+        stateMachine.rb.velocity = Vector2.zero; // 重置速度
+        stateMachine.rb.gravityScale = 0; // 重力设为0
+        
+        // 确定冲刺方向
+        Vector2 inputDirection = new Vector2(stateMachine.inputAdapter.MoveX, stateMachine.inputAdapter.MoveY).normalized;
+        // 如果没有方向输入，则使用角色朝向，否则使用输入方向
+        if (inputDirection.magnitude < 0.1f)
+            dashDirection = new Vector2(stateMachine.FacingDirection, 0);
+        else
+            dashDirection = inputDirection;
+        
+        // 设置冲刺速度
+        stateMachine.SetVelocity(dashDirection * stateMachine.movementData.dashForce);
+        
+        yield return new WaitForSeconds(stateMachine.movementData.dashDuration);
+        
+        stateMachine.rb.AddForce(-dashDirection * stateMachine.movementData.dashBackForce, ForceMode2D.Impulse); // 添加下冲力
+        stateMachine.rb.gravityScale = stateMachine.movementData.gravityScale; // 恢复重力
+        stateMachine.IsDashing = false; // 冲刺结束
+        
+        // 冲刺结束，根据当前状态切换
+        if (stateMachine.IsGrounded)
+        {
+            if (Mathf.Abs(stateMachine.inputAdapter.MoveX) > 0.1f)
+                stateMachine.ChangeState<RunningState>();
+            else
+                stateMachine.ChangeState<IdleState>();
+        }
+        else
+        {
+            stateMachine.ChangeState<FallingState>();
+        }
     }
     
-    public bool IsInvincible => isInvincible;
+    // /// <summary>
+    // /// 无敌帧协程
+    // /// </summary>
+    // private IEnumerator IFramesCoroutine(PlayerStateMachine stateMachine)
+    // {
+    //     yield return new WaitForSeconds(stateMachine.movementData.iFramesDuration);
+    //     isInvincible = false;
+    // }
+    
+    // public bool IsInvincible => isInvincible;
 }
