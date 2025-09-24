@@ -1225,7 +1225,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 2457519643017696435, guid: 30c312a10c165a2458bdc2f2ec00dc61, type: 3}
-  startPoint: {x: 0, y: 0}
   checkpoint: {x: 0, y: 0}
 --- !u!4 &1643440144
 Transform:

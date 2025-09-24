@@ -55,10 +55,11 @@ public class PlayerStateMachine : MonoBehaviour
     {
         currentState?.FixedUpdate(this);
     }
-
+    
     public void SetVelocity(Vector2 velocity){
         rb.velocity = velocity;
     }
+    
     /// <summary>
     /// 初始化组件
     /// </summary>
@@ -203,9 +204,9 @@ public class PlayerStateMachine : MonoBehaviour
     {
         if (animator == null) return;
         
-        animator.SetFloat("Speed", Mathf.Abs(rb.velocity.x));
-        animator.SetFloat("vSpeed", rb.velocity.y);
-        animator.SetBool("Grounded", IsGrounded);
-        animator.SetBool("CanDash", CanDash);
+        // animator.SetFloat("Speed", Mathf.Abs(rb.velocity.x));
+        // animator.SetFloat("vSpeed", rb.velocity.y);
+        // animator.SetBool("Grounded", IsGrounded);
+        // animator.SetBool("CanDash", CanDash);
     }
 }

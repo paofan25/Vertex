@@ -4,7 +4,7 @@ using UnityEngine;
 public class MovementData : ScriptableObject
 {
     [Header("基础移动")]
-    public float runSpeed = 8f;
+    [Tooltip("移动速度")] public float runSpeed = 8f;
     public float acceleration = 50f;
     public float deceleration = 60f;
     public float airControl = 0.6f;

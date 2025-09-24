@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
         if (!canInput) return; // 禁止输入则返回
         
         // GetInput(); // 获取输入
+        
         if (Input.GetButtonDown("Jump"))
         {
             // Jump(); // 跳跃
@@ -70,7 +71,7 @@ public class PlayerController : MonoBehaviour
 
     
     // #region-----------------------------------这部分是调试用的临时移动方法，直接删除替换即可-------------------------------------------
-    // // 获取输入
+    // 获取输入
     // private void GetInput()
     // {
     //     horizontal = Input.GetAxisRaw("Horizontal"); // 获取水平输入

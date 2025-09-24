@@ -7,18 +7,13 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class LocomotionMotor2D : MonoBehaviour
 {
-    // --- 引用 ---
     private Rigidbody2D rb;
     private PlayerStateMachine stateMachine; // 用于获取数据和状态
-
-    // --- 内部状态 ---
-    private float currentGravityScale;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         stateMachine = GetComponent<PlayerStateMachine>();
-        currentGravityScale = rb.gravityScale;
     }
 
     /// <summary>
@@ -27,18 +22,19 @@ public class LocomotionMotor2D : MonoBehaviour
     /// <param name="inputX">水平输入 (-1 到 1)</param>
     public void HandleGroundMovement(float inputX)
     {
-        float targetSpeed = inputX * stateMachine.movementData.runSpeed;
-        float acceleration = stateMachine.movementData.acceleration;
-        float deceleration = stateMachine.movementData.deceleration;
-
-        // 根据是否有输入选择加速度或减速度
-        float accelRate = (Mathf.Abs(inputX) > 0.01f) ? acceleration : deceleration;
-
-        // 使用MoveTowards平滑速度变化
-        float newVelocityX = Mathf.MoveTowards(rb.velocity.x, targetSpeed, accelRate * Time.fixedDeltaTime);
-        rb.velocity = new Vector2(newVelocityX, rb.velocity.y);
+        float speed = inputX * stateMachine.movementData.runSpeed;
+        rb.velocity = new Vector2(speed, rb.velocity.y);
         
-        // Debug.Log($"[Motor] Target Speed: {targetSpeed}, Current Speed: {rb.velocity.x}, AccelRate: {accelRate}");
+        // float targetSpeed = inputX * stateMachine.movementData.runSpeed;
+        // float acceleration = stateMachine.movementData.acceleration;
+        // float deceleration = stateMachine.movementData.deceleration;
+        //
+        // // 根据是否有输入选择加速度或减速度
+        // float accelRate = (Mathf.Abs(inputX) > 0.01f) ? acceleration : deceleration;
+        //
+        // // 使用MoveTowards平滑速度变化
+        // float newVelocityX = Mathf.MoveTowards(rb.velocity.x, targetSpeed, accelRate * Time.fixedDeltaTime);
+        // rb.velocity = new Vector2(newVelocityX, rb.velocity.y);
     }
 
     /// <summary>

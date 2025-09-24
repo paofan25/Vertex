@@ -20,31 +20,28 @@ public class RunningState : IPlayerState
             return;
         }
 
-        // 检查状态转换
+        // 如果不在地面上，切换至坠落状态
         if (!stateMachine.IsGrounded)
         {
-            // Debug.Log("[RunningState] Not Grounded -> FallingState");
             stateMachine.ChangeState<FallingState>();
             return;
         }
         
-        if (Mathf.Abs(stateMachine.inputAdapter.MoveX) <= 0.1f)
+        // 如果没有水平输入，切换至站立状态
+        if (Mathf.Abs(stateMachine.inputAdapter.MoveX) <= 0.01f)
         {
-            // Debug.Log("[RunningState] No Input -> IdleState");
             stateMachine.ChangeState<IdleState>();
             return;
         }
         
         if (stateMachine.inputAdapter.JumpPressed)
         {
-            // Debug.Log("[RunningState] Jump Pressed -> JumpingState");
             stateMachine.ChangeState<JumpingState>();
             return;
         }
         
         if (stateMachine.inputAdapter.DashPressed && stateMachine.CanDash && stateMachine.DashCooldownTimer <= 0)
         {
-            // Debug.Log("[RunningState] Dash Pressed -> DashState");
             stateMachine.ChangeState<DashState>();
             return;
         }
@@ -53,7 +50,6 @@ public class RunningState : IPlayerState
     public void FixedUpdate(PlayerStateMachine stateMachine)
     {
         // 将物理移动委托给Motor
-        // Debug.Log($"[RunningState] MoveX Input: {stateMachine.inputAdapter.MoveX}");
         stateMachine.motor.HandleGroundMovement(stateMachine.inputAdapter.MoveX);
         
         // 翻转角色
