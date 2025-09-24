@@ -22,19 +22,16 @@ public class LocomotionMotor2D : MonoBehaviour
     /// <param name="inputX">水平输入 (-1 到 1)</param>
     public void HandleGroundMovement(float inputX)
     {
-        float speed = inputX * stateMachine.movementData.runSpeed;
-        rb.velocity = new Vector2(speed, rb.velocity.y);
+        float targetSpeed = inputX * stateMachine.movementData.runSpeed;
+        float acceleration = stateMachine.movementData.acceleration;
+        float deceleration = stateMachine.movementData.deceleration;
         
-        // float targetSpeed = inputX * stateMachine.movementData.runSpeed;
-        // float acceleration = stateMachine.movementData.acceleration;
-        // float deceleration = stateMachine.movementData.deceleration;
-        //
-        // // 根据是否有输入选择加速度或减速度
-        // float accelRate = (Mathf.Abs(inputX) > 0.01f) ? acceleration : deceleration;
-        //
-        // // 使用MoveTowards平滑速度变化
-        // float newVelocityX = Mathf.MoveTowards(rb.velocity.x, targetSpeed, accelRate * Time.fixedDeltaTime);
-        // rb.velocity = new Vector2(newVelocityX, rb.velocity.y);
+        // 根据是否有输入选择加速度或减速度
+        float accelRate = (Mathf.Abs(inputX) > 0.01f) ? acceleration : deceleration;
+        
+        // 使用MoveTowards平滑速度变化
+        float newVelocityX = Mathf.MoveTowards(rb.velocity.x, targetSpeed, accelRate * Time.fixedDeltaTime);
+        rb.velocity = new Vector2(newVelocityX, rb.velocity.y);
     }
 
     /// <summary>
@@ -43,15 +40,15 @@ public class LocomotionMotor2D : MonoBehaviour
     /// <param name="inputX">水平输入 (-1 到 1)</param>
     public void HandleAirMovement(float inputX)
     {
-        float targetSpeed = inputX * stateMachine.movementData.runSpeed;
-        float acceleration = stateMachine.movementData.acceleration * stateMachine.movementData.airControl;
-
-        // 在空中，我们只允许玩家施加推力，减速主要靠空气阻力（线性阻尼）
-        if (Mathf.Abs(inputX) > 0.01f)
-        {
-            float newVelocityX = Mathf.MoveTowards(rb.velocity.x, targetSpeed, acceleration * Time.fixedDeltaTime);
-            rb.velocity = new Vector2(newVelocityX, rb.velocity.y);
-        }
+        // float targetSpeed = inputX * stateMachine.movementData.runSpeed;
+        // float acceleration = stateMachine.movementData.acceleration * stateMachine.movementData.airControl;
+        //
+        // // 在空中，我们只允许玩家施加推力，减速主要靠空气阻力（线性阻尼）
+        // if (Mathf.Abs(inputX) > 0.01f)
+        // {
+        //     float newVelocityX = Mathf.MoveTowards(rb.velocity.x, targetSpeed, acceleration * Time.fixedDeltaTime);
+        //     rb.velocity = new Vector2(newVelocityX, rb.velocity.y);
+        // }
     }
 
     /// <summary>
@@ -70,10 +67,10 @@ public class LocomotionMotor2D : MonoBehaviour
     public void CutJump()
     {
         // 只在角色上升时削减速度
-        if (rb.velocity.y > 0)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * stateMachine.movementData.jumpCutMultiplier);
-        }
+        // if (rb.velocity.y > 0)
+        // {
+        //     rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * stateMachine.movementData.jumpCutMultiplier);
+        // }
     }
 
     /// <summary>
@@ -81,22 +78,22 @@ public class LocomotionMotor2D : MonoBehaviour
     /// </summary>
     public void ApplyGravity()
     {
-        // 快速下落：如果玩家下落且按下了“下”方向键
-        bool isFalling = rb.velocity.y < 0;
-        bool fastFallInput = stateMachine.inputAdapter.MoveY < -0.1f;
-
-        float gravityMultiplier = (isFalling && fastFallInput) 
-            ? stateMachine.movementData.fastFallMultiplier 
-            : 1f;
-
-        // 施加重力
-        rb.AddForce(Vector2.down * stateMachine.movementData.gravity * gravityMultiplier, ForceMode2D.Force);
-
-        // 限制最大下落速度
-        if (rb.velocity.y < -stateMachine.movementData.maxFallSpeed)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, -stateMachine.movementData.maxFallSpeed);
-        }
+        // // 快速下落：如果玩家下落且按下了“下”方向键
+        // bool isFalling = rb.velocity.y < 0;
+        // bool fastFallInput = stateMachine.inputAdapter.MoveY < -0.1f;
+        //
+        // float gravityMultiplier = (isFalling && fastFallInput) 
+        //     ? stateMachine.movementData.fastFallMultiplier 
+        //     : 1f;
+        //
+        // // 施加重力
+        // rb.AddForce(Vector2.down * stateMachine.movementData.gravityScale * gravityMultiplier, ForceMode2D.Force);
+        //
+        // // 限制最大下落速度
+        // if (rb.velocity.y < -stateMachine.movementData.maxFallSpeed)
+        // {
+        //     rb.velocity = new Vector2(rb.velocity.x, -stateMachine.movementData.maxFallSpeed);
+        // }
     }
     
     /// <summary>

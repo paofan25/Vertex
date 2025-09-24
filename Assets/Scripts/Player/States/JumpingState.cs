@@ -8,11 +8,16 @@ public class JumpingState : IPlayerState
     public void Enter(PlayerStateMachine stateMachine)
     {
         // 执行跳跃
-        Vector2 velocity = stateMachine.Velocity;
-        velocity.y = stateMachine.movementData.jumpForce;
-        stateMachine.SetVelocity(velocity);
+        stateMachine.rb.gravityScale = stateMachine.movementData.gravityScale; // 设置重力
+        stateMachine.rb.drag = stateMachine.movementData.upDrag; // 修改阻尼
+        stateMachine.rb.velocity = new Vector2(stateMachine.rb.velocity.x, 0); // 重置y轴速度
+        stateMachine.rb.AddForce(Vector2.up * stateMachine.movementData.jumpForce, ForceMode2D.Impulse); // 施加跳跃力
         
-        // 触发跳跃事件
+        // Vector2 velocity = stateMachine.Velocity;
+        // velocity.y = stateMachine.movementData.jumpForce;
+        // stateMachine.SetVelocity(velocity);
+        
+        // 播放跳跃音效
         AudioManager.Instance?.PlaySFX("Jump");
     }
     
@@ -21,7 +26,8 @@ public class JumpingState : IPlayerState
         // 可变跳跃：如果松开跳跃键，则缩短跳跃高度
         if (stateMachine.Velocity.y > 0 && !stateMachine.inputAdapter.JumpHeld)
         {
-            stateMachine.SetVelocity(new Vector2(stateMachine.Velocity.x, 0));
+            stateMachine.rb.AddForce(Vector2.down * stateMachine.movementData.downForce, ForceMode2D.Impulse);
+            // stateMachine.SetVelocity(new Vector2(stateMachine.Velocity.x, 0));
         }
         
         // 检查是否主动抓墙(不在地面上时才能)
@@ -30,6 +36,7 @@ public class JumpingState : IPlayerState
             Debug.Log("Climbing");
             return;
         }
+        
         // 检查状态转换
         if (stateMachine.inputAdapter.GrabHeld && stateMachine.IsAgainstWall && !stateMachine.IsGrounded && stateMachine.CurrentStamina > 0)
         {
@@ -38,11 +45,13 @@ public class JumpingState : IPlayerState
             return;
         }
 
+        // 如果速度向下，切换至坠落状态
         if (stateMachine.Velocity.y <= 0)
         {
             stateMachine.ChangeState<FallingState>();
             return;
         }
+        
         
         if (stateMachine.inputAdapter.DashPressed && stateMachine.CanDash && stateMachine.DashCooldownTimer <= 0)
         {
@@ -70,5 +79,6 @@ public class JumpingState : IPlayerState
     
     public void Exit(PlayerStateMachine stateMachine)
     {
+        
     }
 }

@@ -5,21 +5,24 @@ public class MovementData : ScriptableObject
 {
     [Header("基础移动")]
     [Tooltip("移动速度")] public float runSpeed = 8f;
-    public float acceleration = 50f;
-    public float deceleration = 60f;
-    public float airControl = 0.6f;
+    [Tooltip("加速度")] public float acceleration = 50f;
+    [Tooltip("减速度")] public float deceleration = 60f;
+    [Tooltip("空中系数")] public float airControl = 0.6f;
     
     [Header("跳跃")]
-    public float jumpForce = 15f;
-    public float minJumpForce = 5f;
-    public float jumpCutMultiplier = 0.5f;
-    public float jumpBufferTime = 0.1f;
-    public float coyoteTime = 0.15f;
+    [Tooltip("跳跃力度")] public float jumpForce = 20f;
+    [Tooltip("向上阻尼")] public float upDrag = 5f;
+    [Tooltip("松开按键时的向下阻力")] public float downForce = 0.3f;
+    // public float minJumpForce = 5f;
+    // public float jumpCutMultiplier = 0.5f;
+    // public float jumpBufferTime = 0.1f;
+    // public float coyoteTime = 0.15f;
     
     [Header("重力")]
-    public float gravity = 25f;
-    public float maxFallSpeed = 20f;
-    public float fastFallMultiplier = 2f;
+    [Tooltip("初始重力")] public float gravityScale = 3f;
+    [Tooltip("下落重力")] public float fallGravityScale = 4f; 
+    [Tooltip("最大下落速度")] public float maxFallSpeed = 20f;
+    // public float fastFallMultiplier = 2f;
     
     [Header("墙壁")]
     public float wallSlideSpeed = 5f;

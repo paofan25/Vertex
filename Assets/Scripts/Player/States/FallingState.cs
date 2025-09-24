@@ -8,6 +8,8 @@ public class FallingState : IPlayerState
     public void Enter(PlayerStateMachine stateMachine)
     {
         // 进入下落状态
+        stateMachine.rb.drag = 0; // 重置阻尼
+        stateMachine.rb.gravityScale = stateMachine.movementData.fallGravityScale; // 设置下落重力
     }
     
     public void Update(PlayerStateMachine stateMachine)
@@ -65,11 +67,12 @@ public class FallingState : IPlayerState
         velocity.y = Mathf.Max(velocity.y, -stateMachine.movementData.maxFallSpeed);
         
         // 快速下落
-        if (stateMachine.inputAdapter.MoveY < -0.5f)
-        {
-            velocity.y -= stateMachine.movementData.fastFallMultiplier * Time.fixedDeltaTime * 10f;
-        }
+        // if (stateMachine.inputAdapter.MoveY < -0.5f)
+        // {
+        //     velocity.y -= stateMachine.movementData.fastFallMultiplier * Time.fixedDeltaTime * 10f;
+        // }
         
+        // 设置速度
         stateMachine.SetVelocity(velocity);
         
         // 翻转角色
@@ -82,6 +85,7 @@ public class FallingState : IPlayerState
     public void Exit(PlayerStateMachine stateMachine)
     {
         // 退出下落状态
+        stateMachine.rb.gravityScale = stateMachine.movementData.gravityScale; // 恢复重力
     }
     
     /// <summary>

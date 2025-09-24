@@ -8,6 +8,7 @@ public class IdleState : IPlayerState
     public void Enter(PlayerStateMachine stateMachine)
     {
         // 进入待机状态
+        stateMachine.rb.velocity = new Vector2(stateMachine.rb.velocity.x, 0);
     }
     
     public void Update(PlayerStateMachine stateMachine)
