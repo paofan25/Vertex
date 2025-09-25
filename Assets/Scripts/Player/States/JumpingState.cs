@@ -17,6 +17,8 @@ public class JumpingState : IPlayerState
         // velocity.y = stateMachine.movementData.jumpForce;
         // stateMachine.SetVelocity(velocity);
         
+        stateMachine.animator.Play("Jump");
+        
         // 播放跳跃音效
         AudioManager.Instance?.PlaySFX("Jump");
     }

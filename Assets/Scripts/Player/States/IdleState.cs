@@ -10,6 +10,8 @@ public class IdleState : IPlayerState
         // 进入待机状态
         stateMachine.rb.velocity = new Vector2(stateMachine.rb.velocity.x, 0); // 重置Y轴速度
         stateMachine.DashCount = stateMachine.movementData.maxDashCount; // 重置冲刺次数
+        
+        stateMachine.animator.Play("Idle");
     }
     
     public void Update(PlayerStateMachine stateMachine)

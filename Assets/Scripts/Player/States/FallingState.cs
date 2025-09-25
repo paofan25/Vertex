@@ -8,6 +8,7 @@ public class FallingState : IPlayerState
     public void Enter(PlayerStateMachine stateMachine)
     {
         // 进入下落状态
+        stateMachine.animator.Play("Fall");
         stateMachine.rb.gravityScale = stateMachine.movementData.fallGravityScale; // 设置下落重力
     }
     

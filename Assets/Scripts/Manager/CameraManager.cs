@@ -33,7 +33,12 @@ public class CameraManager : MonoBehaviour
     {
         GetCameraEvent getCameraEvent = (GetCameraEvent) gameEvent;
         
-        this.vcam = getCameraEvent.vcam; // 设置虚拟相机
+        vcam = getCameraEvent.vcam; // 设置虚拟相机
+    }
+
+    public CinemachineVirtualCamera GetCamera()
+    {
+        return vcam;
     }
 
     // 摇动相机

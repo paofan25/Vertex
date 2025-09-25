@@ -20,19 +20,15 @@ public class EnterRoom : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            if(CameraManager.Instance.GetCamera() != null)
+                CameraManager.Instance.GetCamera().gameObject.SetActive(false); // 禁用上一个房间的相机
+            
             confiner.gameObject.SetActive(true); // 进入场景时激活相机
             EventBus.Publish(new GetCameraEvent(vcam)); // 发布获取相机事件
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            confiner.gameObject.SetActive(false); // 离开场景时禁用相机
-        }
-    }
-
+    // 获取玩家事件处理函数
     private void GetPlayer(GameEvent gameEvent)
     {
         GetPlayerEvent getPlayerEvent = (GetPlayerEvent) gameEvent;
