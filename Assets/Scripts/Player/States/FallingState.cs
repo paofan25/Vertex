@@ -14,6 +14,13 @@ public class FallingState : IPlayerState
     
     public void Update(PlayerStateMachine stateMachine)
     {
+        // 郊狼时间跳跃
+        if (stateMachine.inputAdapter.JumpPressed && stateMachine.IsCoyoteTime)
+        {
+            stateMachine.ChangeState<JumpingState>();
+            return;
+        }
+        
         // 检查是否主动抓墙(不在地面上时才能)
         if (stateMachine.inputAdapter.GrabHeld && stateMachine.IsAgainstWall && !stateMachine.IsGrounded && stateMachine.CurrentStamina > 0)
         {

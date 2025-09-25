@@ -7,6 +7,9 @@ public class JumpingState : IPlayerState
 {
     public void Enter(PlayerStateMachine stateMachine)
     {
+        // 消耗跳跃缓冲
+        stateMachine.JumpBufferTimer = 0f;
+        
         // 执行跳跃
         stateMachine.rb.gravityScale = stateMachine.movementData.gravityScale; // 设置重力
         stateMachine.rb.drag = stateMachine.movementData.upDrag; // 修改阻尼

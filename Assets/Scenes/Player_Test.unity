@@ -914,6 +914,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1848839224}
+  - component: {fileID: 1848839227}
   - component: {fileID: 1848839223}
   - component: {fileID: 1848839222}
   - component: {fileID: 1848839225}
@@ -993,7 +994,7 @@ Transform:
   m_GameObject: {fileID: 1848839221}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.057804, y: 0.26085925, z: -16.998215}
+  m_LocalPosition: {x: -7.1521955, y: 0.9251988, z: -16.998215}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1078,6 +1079,22 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1848839227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1848839221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5cd40ff71f349c68fab3835db353c7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vcam: {fileID: 0}
+  noiseProfile: {fileID: 0}
+  shakeAmount: 5
+  shakeDuration: 0.3
 --- !u!1 &2000499166
 GameObject:
   m_ObjectHideFlags: 0

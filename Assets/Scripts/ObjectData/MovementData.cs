@@ -15,8 +15,8 @@ public class MovementData : ScriptableObject
     [Tooltip("松开按键时的向下阻力")] public float downForce = 0.3f;
     // public float minJumpForce = 5f;
     // public float jumpCutMultiplier = 0.5f;
-    // public float jumpBufferTime = 0.1f;
-    // public float coyoteTime = 0.15f;
+    [Tooltip("跳跃缓冲时间")] public float jumpBufferTime = 0.1f;
+    [Tooltip("郊狼时间")] public float coyoteTime = 0.15f;
     
     [Header("重力")]
     [Tooltip("初始重力")] public float gravityScale = 3f;

@@ -7,6 +7,13 @@ public class RunningState : IPlayerState
 {
     public void Enter(PlayerStateMachine stateMachine)
     {
+        // 如果有跳跃缓冲，立即跳跃
+        if (stateMachine.IsJumpBuffered)
+        {
+            stateMachine.ChangeState<JumpingState>();
+            return;
+        }
+        
         // 进入奔跑状态
         // stateMachine.animator.SetBool("isRunning", true);
         stateMachine.animator.Play("Run");
@@ -15,6 +22,13 @@ public class RunningState : IPlayerState
     
     public void Update(PlayerStateMachine stateMachine)
     {
+        // 如果按下【跳跃键】，切换至跳跃状态
+        if (stateMachine.inputAdapter.JumpPressed)
+        {
+            stateMachine.ChangeState<JumpingState>();
+            return;
+        }
+        
         // 检查是否主动抓墙
         if (stateMachine.inputAdapter.GrabHeld && stateMachine.IsAgainstWall && !stateMachine.IsGrounded)
         {
@@ -26,6 +40,7 @@ public class RunningState : IPlayerState
         // 如果不在地面上，切换至坠落状态
         if (!stateMachine.IsGrounded)
         {
+            stateMachine.CoyoteTimer = stateMachine.movementData.coyoteTime; // 启动郊狼时间
             stateMachine.ChangeState<FallingState>();
             return;
         }
@@ -34,13 +49,6 @@ public class RunningState : IPlayerState
         if (Mathf.Abs(stateMachine.inputAdapter.MoveX) <= 0.01f)
         {
             stateMachine.ChangeState<IdleState>();
-            return;
-        }
-        
-        // 如果按下【跳跃键】，切换至跳跃状态
-        if (stateMachine.inputAdapter.JumpPressed)
-        {
-            stateMachine.ChangeState<JumpingState>();
             return;
         }
         

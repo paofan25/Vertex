@@ -7,6 +7,13 @@ public class IdleState : IPlayerState
 {
     public void Enter(PlayerStateMachine stateMachine)
     {
+        // 如果有跳跃缓冲，立即跳跃
+        if (stateMachine.IsJumpBuffered)
+        {
+            stateMachine.ChangeState<JumpingState>();
+            return;
+        }
+        
         // 进入待机状态
         stateMachine.rb.velocity = new Vector2(stateMachine.rb.velocity.x, 0); // 重置Y轴速度
         stateMachine.DashCount = stateMachine.movementData.maxDashCount; // 重置冲刺次数
@@ -16,6 +23,13 @@ public class IdleState : IPlayerState
     
     public void Update(PlayerStateMachine stateMachine)
     {
+        // 如果按下【跳跃键】，切换至跳跃状态
+        if (stateMachine.inputAdapter.JumpPressed)
+        {
+            stateMachine.ChangeState<JumpingState>();
+            return;
+        }
+        
         // 检查是否主动抓墙(不在地面上时才能)
         if (stateMachine.inputAdapter.GrabHeld && stateMachine.IsAgainstWall && !stateMachine.IsGrounded) {
             stateMachine.ChangeState<ClimbingState>();
@@ -33,6 +47,7 @@ public class IdleState : IPlayerState
         // 如果【不在地面】上，切换至坠落状态
         if (!stateMachine.IsGrounded)
         {
+            stateMachine.CoyoteTimer = stateMachine.movementData.coyoteTime; // 启动郊狼时间
             stateMachine.ChangeState<FallingState>();
             return;
         }
@@ -41,13 +56,6 @@ public class IdleState : IPlayerState
         if (Mathf.Abs(stateMachine.inputAdapter.MoveX) > 0.01f)
         {
             stateMachine.ChangeState<RunningState>();
-            return;
-        }
-        
-        // 如果按下【跳跃键】，切换至跳跃状态
-        if (stateMachine.inputAdapter.JumpPressed)
-        {
-            stateMachine.ChangeState<JumpingState>();
             return;
         }
         

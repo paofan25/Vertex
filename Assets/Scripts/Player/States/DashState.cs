@@ -81,9 +81,14 @@ public class DashState : IPlayerState
         
         yield return new WaitForSeconds(stateMachine.movementData.dashDuration);
         
-        stateMachine.rb.AddForce(-dashDirection * stateMachine.movementData.dashBackForce, ForceMode2D.Impulse); // 添加下冲力
         stateMachine.rb.gravityScale = stateMachine.movementData.gravityScale; // 恢复重力
         stateMachine.IsDashing = false; // 冲刺结束
+
+        // 冲刺结束后，将垂直速度清零，防止“微跳”
+        if (!stateMachine.IsGrounded)
+        {
+            stateMachine.SetVelocity(new Vector2(stateMachine.Velocity.x, 0));
+        }
         
         // 冲刺结束，根据当前状态切换
         if (stateMachine.IsGrounded)

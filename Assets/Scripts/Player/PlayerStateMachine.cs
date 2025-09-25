@@ -33,6 +33,11 @@ public class PlayerStateMachine : MonoBehaviour
     public bool CanDash { get; set; } = true; // 是否可以冲刺
     public float CurrentStamina { get; set; } = 0f; // 当前耐力值
     
+    public float JumpBufferTimer { get; set; } = 0f; // 跳跃缓冲计时器
+    public bool IsJumpBuffered => JumpBufferTimer > 0f; // 是否在跳跃缓冲时间内
+    public float CoyoteTimer { get; set; } = 0f; // 郊狼时间计时器
+    public bool IsCoyoteTime => CoyoteTimer > 0f; // 是否在郊狼时间内
+    
     private void Awake()
     {
         InitializeComponents();
@@ -47,9 +52,15 @@ public class PlayerStateMachine : MonoBehaviour
     
     private void Update()
     {
-        // UpdateTimers();
+        UpdateTimers();
         UpdateStamina();
         CheckWall();
+
+        if (inputAdapter.JumpPressed)
+        {
+            JumpBufferTimer = movementData.jumpBufferTime;
+        }
+        
         currentState?.Update(this);
     }
     
@@ -107,22 +118,20 @@ public class PlayerStateMachine : MonoBehaviour
         }
     }
     
-    // /// <summary>
-    // /// 更新计时器
-    // /// </summary>
-    // private void UpdateTimers()
-    // {
-    //     // 冲刺冷却
-    //     if (DashCooldownTimer > 0)
-    //     {
-    //         DashCooldownTimer -= Time.deltaTime;
-    //         // Debug.Log($"Dash Cooldown: {DashCooldownTimer:F2}");
-    //         if (DashCooldownTimer <= 0 && IsGrounded)
-    //         {
-    //             ResetDash();
-    //         }
-    //     }
-    // }
+    /// <summary>
+    /// 更新计时器
+    /// </summary>
+    private void UpdateTimers()
+    {
+        if (JumpBufferTimer > 0)
+        {
+            JumpBufferTimer -= Time.deltaTime;
+        }
+        if (CoyoteTimer > 0)
+        {
+            CoyoteTimer -= Time.deltaTime;
+        }
+    }
     
     /// <summary>
     /// 更新耐力
