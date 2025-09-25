@@ -16,6 +16,7 @@ public class PlayerStateMachine : MonoBehaviour
     
     [Header("参数配置")]
     public MovementData movementData; // 运动数据
+    public LayerMask spikeLayer; // 刺的层
     
     // 状态管理
     private IPlayerState currentState; // 当前状态
@@ -69,6 +70,16 @@ public class PlayerStateMachine : MonoBehaviour
         currentState?.FixedUpdate(this);
     }
     
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        // 如果碰到的物体在spikeLayer里
+        if (spikeLayer == (spikeLayer | (1 << other.gameObject.layer)))
+        {
+            EventBus.Publish(new OnPlayerDeathEvent()); // 发布玩家死亡事件
+            ChangeState<DeadState>(); // 切换到死亡状态
+        }
+    }
+    
     public void SetVelocity(Vector2 velocity){
         rb.velocity = velocity;
     }
@@ -100,7 +111,8 @@ public class PlayerStateMachine : MonoBehaviour
             { typeof(DashState), new DashState() },
             { typeof(WallSlideState), new WallSlideState() },
             { typeof(ClimbingState), new ClimbingState() },
-            { typeof(WallJumpState), new WallJumpState() }
+            { typeof(WallJumpState), new WallJumpState() },
+            { typeof(DeadState), new DeadState() }
         };
     }
     

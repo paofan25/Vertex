@@ -48,8 +48,6 @@ GameObject:
   - component: {fileID: 5049763518582741811}
   - component: {fileID: 397171355629125498}
   - component: {fileID: 4297002194080121022}
-  - component: {fileID: 7335991596768840227}
-  - component: {fileID: -6585473237735823110}
   m_Layer: 0
   m_Name: Stickman
   m_TagString: Player
@@ -227,6 +225,7 @@ MonoBehaviour:
   jumpHeld: 0
   dashInput: 0
   grabHeld: 0
+  canInput: 1
 --- !u!114 &5049763518582741811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,6 +258,9 @@ MonoBehaviour:
   spriteRenderer: {fileID: 0}
   motor: {fileID: 4297002194080121022}
   movementData: {fileID: 11400000, guid: 50214f891b65fc241a377289d59dbf4c, type: 2}
+  spikeLayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!114 &4297002194080121022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,40 +273,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de199197e520a15489940c610a9744b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7335991596768840227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2457519643017696435}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58003ec50686076419d8ca63d495cfb9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 0}
-  spikeLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  speed: 5
-  jumpForce: 7
-  horizontal: 0
---- !u!114 &-6585473237735823110
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2457519643017696435}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22191ec96f73c3a4e904df5b05be5bf6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 0}
-  knockBack: 2
-  drag: 2
 --- !u!1 &6116538076536374061
 GameObject:
   m_ObjectHideFlags: 0

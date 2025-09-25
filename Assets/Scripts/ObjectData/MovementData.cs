@@ -39,6 +39,10 @@ public class MovementData : ScriptableObject
     [Tooltip("冲刺反冲力")] public float dashBackForce = 10f;
     public float dashCooldown = 1f;
     public float superDashExtraTime = 0.1f;
+
+    [Header("死亡")] 
+    [Tooltip("死亡反冲力")] public float knockBackForce = 7f;
+    [Tooltip("死亡反冲阻尼")] public float deadDrag = 2f;
     
     [Header("地面检测")]
     public LayerMask groundLayer = 1;
