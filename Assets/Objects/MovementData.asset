@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55057b7dc60173e43a67bb87b495977b, type: 3}
   m_Name: MovementData
   m_EditorClassIdentifier: 
-  runSpeed: 8
-  acceleration: 50
+  runSpeed: 5.5
+  acceleration: 30
   deceleration: 60
-  airControl: 0.6
-  jumpForce: 25
+  airControl: 1
+  jumpForce: 15
   upDrag: 4
-  downForce: 0.3
-  gravityScale: 3
+  downForce: 0.7
+  gravityScale: 2
   fallGravityScale: 5
   maxFallSpeed: 10
   wallSlideSpeed: 15
@@ -29,7 +29,7 @@ MonoBehaviour:
   wallJumpForceY: 12
   wallJumpDirection: {x: 1, y: 1.2}
   maxDashCount: 2
-  dashForce: 20
+  dashForce: 18
   dashDuration: 0.15
   dashBackForce: 10
   dashCooldown: 1
