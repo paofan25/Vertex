@@ -14,9 +14,25 @@ public class GatherInput : MonoBehaviour
     public bool jumpHeld;     // C键 - 持续按住
     public bool dashInput;    // X键 - 按下瞬间
     public bool grabHeld;     // Z键 - 持续按住
+    
+    public bool canInput = true; // 是否能够进行输入
+
+    private void OnEnable()
+    {
+        // 订阅事件
+        EventBus.Subscribe<CanInputEvent>(CanInput); // 订阅是否能够进行输入事件
+    }
+
+    private void OnDisable()
+    {
+        // 退订事件
+        EventBus.Unsubscribe<CanInputEvent>(CanInput); // 退订是否能够进行输入事件
+    }
 
     private void Update()
     {
+        if (!canInput) return;
+        
         // 重置瞬时输入
         jumpInput = false;
         dashInput = false;
@@ -47,5 +63,15 @@ public class GatherInput : MonoBehaviour
         }
 
         grabHeld = Input.GetKey(KeyCode.Z);
+    }
+
+    /// <summary>
+    /// 是否能够进行输入
+    /// </summary>
+    private void CanInput(GameEvent gameEvent)
+    {
+        CanInputEvent canInputEvent = (CanInputEvent)gameEvent;
+        
+        canInput = canInputEvent.canInput;
     }
 }

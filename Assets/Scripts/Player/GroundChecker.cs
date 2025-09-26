@@ -8,7 +8,7 @@ public class GroundChecker : MonoBehaviour
 {
     [Header("检测参数")]
     [SerializeField] private LayerMask groundLayers;
-    [SerializeField] private float checkDistance = 0.1f;
+    [SerializeField] private float checkDistance = 0.2f;
     [SerializeField] private Vector2 boxSize = new Vector2(0.8f, 0.1f);
     [SerializeField] private int rayCount = 3;
     
