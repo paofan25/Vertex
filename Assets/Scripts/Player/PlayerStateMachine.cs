@@ -37,6 +37,8 @@ public class PlayerStateMachine : MonoBehaviour
     public bool IsJumpBuffered => JumpBufferTimer > 0f; // 是否在跳跃缓冲时间内
     public float CoyoteTimer { get; set; } = 0f; // 郊狼时间计时器
     public bool IsCoyoteTime => CoyoteTimer > 0f; // 是否在郊狼时间内
+    public float DashBufferTimer { get; set; } = 0f; // 冲刺缓冲计时器
+    public bool IsDashBuffered => DashBufferTimer > 0f; // 是否在冲刺缓冲时间内
     
     private void Awake()
     {
@@ -59,6 +61,11 @@ public class PlayerStateMachine : MonoBehaviour
         if (inputAdapter.JumpPressed)
         {
             JumpBufferTimer = movementData.jumpBufferTime;
+        }
+        
+        if (inputAdapter.DashPressed)
+        {
+            DashBufferTimer = movementData.dashBufferTime;
         }
         
         currentState?.Update(this);
@@ -130,6 +137,10 @@ public class PlayerStateMachine : MonoBehaviour
         if (CoyoteTimer > 0)
         {
             CoyoteTimer -= Time.deltaTime;
+        }
+        if (DashBufferTimer > 0)
+        {
+            DashBufferTimer -= Time.deltaTime;
         }
     }
     

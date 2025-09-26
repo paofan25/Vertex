@@ -60,7 +60,7 @@ public class IdleState : IPlayerState
         }
         
         // 如果按下【冲刺键】且【不在冲刺中】且【有剩余冲刺次数】且【能够冲刺】，切换至冲刺状态
-        if (stateMachine.inputAdapter.DashPressed && !stateMachine.IsDashing && stateMachine.DashCount > 0 && stateMachine.CanDash)
+        if (stateMachine.IsDashBuffered && !stateMachine.IsDashing && stateMachine.DashCount > 0 && stateMachine.CanDash)
         {
             stateMachine.ChangeState<DashState>();
             return;

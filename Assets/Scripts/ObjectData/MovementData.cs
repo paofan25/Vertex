@@ -39,6 +39,11 @@ public class MovementData : ScriptableObject
     [Tooltip("冲刺反冲力")] public float dashBackForce = 10f;
     public float dashCooldown = 1f;
     public float superDashExtraTime = 0.1f;
+    [Tooltip("冲刺缓冲时间")] public float dashBufferTime = 0.1f;
+    
+    [Tooltip("向上冲刺力量倍增")] public float upDashForceMultiplier = 1.2f;
+    [Tooltip("向上冲刺滞空时间")] public float upDashHangTime = 0.1f;
+    [Tooltip("向上冲刺滞空时的垂直速度")] public float upDashHangForce = 2f;
     
     [Header("地面检测")]
     public LayerMask groundLayer = 1;

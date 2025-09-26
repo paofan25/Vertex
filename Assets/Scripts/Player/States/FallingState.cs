@@ -48,7 +48,7 @@ public class FallingState : IPlayerState
         
         
         // 如果按下【冲刺键】且【不在冲刺中】且【有剩余冲刺次数】且【能够冲刺】，切换至冲刺状态
-        if (stateMachine.inputAdapter.DashPressed && !stateMachine.IsDashing && stateMachine.DashCount > 0 && stateMachine.CanDash)
+        if (stateMachine.IsDashBuffered && !stateMachine.IsDashing && stateMachine.DashCount > 0 && stateMachine.CanDash)
         {
             stateMachine.ChangeState<DashState>();
             return;
@@ -65,10 +65,12 @@ public class FallingState : IPlayerState
     
     public void FixedUpdate(PlayerStateMachine stateMachine)
     {
+        if (stateMachine.IsDashing) return;
+        
         // 空中水平控制
         float targetVelocityX = stateMachine.inputAdapter.MoveX * stateMachine.movementData.runSpeed;
         Vector2 velocity = stateMachine.Velocity;
-        velocity.x = Mathf.MoveTowards(velocity.x, targetVelocityX, 
+        velocity.x = Mathf.MoveTowards(velocity.x, targetVelocityX,
             stateMachine.movementData.runSpeed * stateMachine.movementData.airControl * Time.fixedDeltaTime * 10f);
         
         // 限制最大下落速度
