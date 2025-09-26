@@ -35,6 +35,7 @@ public class DeadState : IPlayerState
         
         Vector2 moveDir = stateMachine.rb.velocity.normalized; // 获取移动方向
         
+        stateMachine.playerCollider.enabled = false; // 禁用碰撞器
         stateMachine.rb.velocity = Vector2.zero; // 停止移动
         stateMachine.rb.gravityScale = 0; // 取消重力
         

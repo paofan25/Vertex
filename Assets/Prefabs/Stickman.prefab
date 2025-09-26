@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 1293837252003565850}
   - component: {fileID: 6832518385386198240}
   - component: {fileID: 8794834856181415210}
-  - component: {fileID: 3398168739008744296}
+  - component: {fileID: 6879411733337177046}
   - component: {fileID: 3697183448199094801}
   - component: {fileID: 1658392758766617731}
   - component: {fileID: 5049763518582741811}
@@ -112,7 +112,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -214092306, guid: d20b4b10dcd080441ab5400a42fe6d7c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -145,8 +145,8 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!58 &3398168739008744296
-CircleCollider2D:
+--- !u!70 &6879411733337177046
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -178,8 +178,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
+  m_Size: {x: 0.73, y: 0.9}
+  m_Direction: 0
 --- !u!50 &3697183448199094801
 Rigidbody2D:
   serializedVersion: 4
@@ -256,6 +256,7 @@ MonoBehaviour:
   groundChecker: {fileID: 1276335087925726832}
   animator: {fileID: 0}
   spriteRenderer: {fileID: 0}
+  playerCollider: {fileID: 0}
   motor: {fileID: 4297002194080121022}
   movementData: {fileID: 11400000, guid: 50214f891b65fc241a377289d59dbf4c, type: 2}
   spikeLayer:

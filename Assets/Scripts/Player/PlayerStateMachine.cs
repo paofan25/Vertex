@@ -12,6 +12,7 @@ public class PlayerStateMachine : MonoBehaviour
     public GroundChecker groundChecker; // 地面检测器
     public Animator animator; // 动画控制器
     public SpriteRenderer spriteRenderer; // 精灵渲染器
+    public Collider2D playerCollider; // 角色碰撞器
     public LocomotionMotor2D motor; // 运动控制器
     
     [Header("参数配置")]
@@ -95,6 +96,7 @@ public class PlayerStateMachine : MonoBehaviour
         if (animator == null) animator = GetComponent<Animator>();
         if (spriteRenderer == null) spriteRenderer = GetComponent<SpriteRenderer>();
         if (motor == null) motor = GetComponent<LocomotionMotor2D>();
+        if (playerCollider == null) playerCollider = GetComponent<Collider2D>();
     }
     
     /// <summary>
