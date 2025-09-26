@@ -6,15 +6,13 @@ using System.Collections;
 /// </summary>
 public class DashState : IPlayerState
 {
-    private Vector2 dashDirection; // 冲刺方向
-    // private float dashTimer; // 冲刺计时器
-    // private bool isInvincible; // 无敌状态
-    
+    private Coroutine dashCoroutine;
+
     public void Enter(PlayerStateMachine stateMachine)
     {
         // 调用冲刺协程
         stateMachine.DashBufferTimer = 0f; // 消耗冲刺缓冲
-        stateMachine.StartCoroutine(Dash(stateMachine));
+        dashCoroutine = stateMachine.StartCoroutine(Dash(stateMachine));
         
         // 重置计时器和状态
         // dashTimer = stateMachine.movementData.dashDuration;
@@ -59,7 +57,14 @@ public class DashState : IPlayerState
     
     public void Exit(PlayerStateMachine stateMachine)
     {
-        // isInvincible = false;
+        if (dashCoroutine != null)
+        {
+            stateMachine.StopCoroutine(dashCoroutine);
+        }
+        // 确保退出状态时，玩家的控制权和物理状态恢复正常
+        stateMachine.motor.enabled = true;
+        stateMachine.rb.gravityScale = stateMachine.movementData.gravityScale;
+        stateMachine.IsDashing = false;
     }
 
     private IEnumerator Dash(PlayerStateMachine stateMachine)

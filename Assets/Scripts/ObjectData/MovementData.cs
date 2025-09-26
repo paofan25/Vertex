@@ -56,4 +56,8 @@ public class MovementData : ScriptableObject
     public float staminaRegenRate = 0.3f;//体力回复倍率
     public float climbHoldStaminaCost = 1f; // 悬停体力消耗
     public float climbUpStaminaCost = 2f;   // 上爬体力消耗
+    
+    [Header("死亡")]
+    [Tooltip("死亡时的阻尼")] public float deadDrag = 5f;
+    [Tooltip("死亡时的击退力度")] public float knockBackForce = 10f;
 }
