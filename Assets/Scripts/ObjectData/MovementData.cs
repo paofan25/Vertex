@@ -37,8 +37,8 @@ public class MovementData : ScriptableObject
     [Tooltip("冲刺速度")] public float dashForce = 20f;
     [Tooltip("冲刺持续时间")] public float dashDuration = 0.15f;
     [Tooltip("冲刺反冲力")] public float dashBackForce = 10f;
-    public float dashCooldown = 1f;
-    public float superDashExtraTime = 0.1f;
+    // public float dashCooldown = 1f;
+    // public float superDashExtraTime = 0.1f;
 
     [Header("死亡")] 
     [Tooltip("死亡反冲力")] public float knockBackForce = 7f;
