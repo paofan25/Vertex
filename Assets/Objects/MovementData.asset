@@ -16,12 +16,12 @@ MonoBehaviour:
   acceleration: 30
   deceleration: 60
   airControl: 1
-  jumpForce: 15
+  jumpForce: 12
   upDrag: 4
   downForce: 0.7
   jumpBufferTime: 0.1
   coyoteTime: 0.15
-  gravityScale: 2
+  gravityScale: 1
   fallGravityScale: 5
   maxFallSpeed: 10
   wallSlideSpeed: 15
@@ -31,8 +31,8 @@ MonoBehaviour:
   wallJumpForceY: 12
   wallJumpDirection: {x: 1, y: 1.2}
   maxDashCount: 2
-  dashForce: 18
-  dashDuration: 0.15
+  dashForce: 13
+  dashDuration: 0.2
   dashBackForce: 10
   dashCooldown: 1
   superDashExtraTime: 0.1
