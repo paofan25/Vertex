@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: abfc75c3ce328ef4fa2ea8dcf7cfa879
+guid: 0bb20f0520fd85f4193b2d0168c304ce
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Jump_0
+      name: juese_daiji1_300_0
       rect:
         serializedVersion: 2
         x: 0
@@ -111,14 +111,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4084822625a4f584ebf3f26a5f814e84
-      internalID: -386789211
+      spriteID: ed1189d6fd85876448f7309c9427f1f8
+      internalID: 635720196
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jump_1
+      name: juese_daiji1_300_1
       rect:
         serializedVersion: 2
         x: 300
@@ -132,14 +132,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b67a67ffad3cf6241be42f997ebf7df3
-      internalID: 594807399
+      spriteID: 38d6ded0814929843b9f469336b460ae
+      internalID: 1220883299
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jump_2
+      name: juese_daiji1_300_2
       rect:
         serializedVersion: 2
         x: 600
@@ -153,14 +153,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cc560267db1204a40abc3709cdfefafb
-      internalID: 31822261
+      spriteID: e7272a2796a8dae4eb41b6cf987ae637
+      internalID: 643011024
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jump_3
+      name: juese_daiji1_300_3
       rect:
         serializedVersion: 2
         x: 900
@@ -174,14 +174,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 592cea736cf0e8b4dae96f679cb4891a
-      internalID: -2026100793
+      spriteID: 6fdc57b676db71543aaa7ef82addeb2f
+      internalID: -2021712756
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jump_4
+      name: juese_daiji1_300_4
       rect:
         serializedVersion: 2
         x: 1200
@@ -195,14 +195,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e7be15cf2e662714881e51c6d3eeb2ef
-      internalID: 327676977
+      spriteID: 14a6b4daa2af5aa44ab3bcc00f28d944
+      internalID: -530536093
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jump_5
+      name: juese_daiji1_300_5
       rect:
         serializedVersion: 2
         x: 1500
@@ -216,14 +216,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 77776409a41c8a24fb59dbef0b5f85be
-      internalID: -1873448198
+      spriteID: 31e6495c8314818459f706ac27bef0e6
+      internalID: -1594045844
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jump_6
+      name: juese_daiji1_300_6
       rect:
         serializedVersion: 2
         x: 1800
@@ -237,14 +237,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 39e471fcffdd31545ae9c537f8423a35
-      internalID: 1914808166
+      spriteID: 4cc4d5f82ef6d0447bdc54d98303109e
+      internalID: 155350317
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jump_7
+      name: juese_daiji1_300_7
       rect:
         serializedVersion: 2
         x: 2100
@@ -258,50 +258,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 45337e67531216243a1361f52ecebe0d
-      internalID: -195534876
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Jump_8
-      rect:
-        serializedVersion: 2
-        x: 2400
-        y: 0
-        width: 300
-        height: 300
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 97cbef62800e08847a07685b457b68b3
-      internalID: 264194882
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Jump_9
-      rect:
-        serializedVersion: 2
-        x: 2700
-        y: 0
-        width: 300
-        height: 300
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1807b53e9a8fcbe4cb5d5f7e844af2aa
-      internalID: 2112369280
+      spriteID: ba03d5c607020514cb80e0bd945ea731
+      internalID: 710551530
       vertices: []
       indices: 
       edges: []
@@ -317,16 +275,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Jump_0: -386789211
-      Jump_1: 594807399
-      Jump_2: 31822261
-      Jump_3: -2026100793
-      Jump_4: 327676977
-      Jump_5: -1873448198
-      Jump_6: 1914808166
-      Jump_7: -195534876
-      Jump_8: 264194882
-      Jump_9: 2112369280
+      juese_daiji1_300_0: 635720196
+      juese_daiji1_300_1: 1220883299
+      juese_daiji1_300_2: 643011024
+      juese_daiji1_300_3: -2021712756
+      juese_daiji1_300_4: -530536093
+      juese_daiji1_300_5: -1594045844
+      juese_daiji1_300_6: 155350317
+      juese_daiji1_300_7: 710551530
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

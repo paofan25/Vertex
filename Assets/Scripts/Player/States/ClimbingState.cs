@@ -9,6 +9,7 @@ public class ClimbingState : IPlayerState
     {
         // 附着在墙上时，速度清零
         stateMachine.SetVelocity(Vector2.zero);
+        stateMachine.animator.Play("Climb");
     }
 
     public void Update(PlayerStateMachine stateMachine)

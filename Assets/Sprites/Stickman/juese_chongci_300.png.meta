@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: abfc75c3ce328ef4fa2ea8dcf7cfa879
+guid: d89734e771159c14b8dbad342dee74f1
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Jump_0
+      name: juese_chongci_300_0
       rect:
         serializedVersion: 2
         x: 0
@@ -111,14 +111,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4084822625a4f584ebf3f26a5f814e84
-      internalID: -386789211
+      spriteID: c037b4a1aefd8f24fbcb334910adaf40
+      internalID: 670488268
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jump_1
+      name: juese_chongci_300_1
       rect:
         serializedVersion: 2
         x: 300
@@ -132,14 +132,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b67a67ffad3cf6241be42f997ebf7df3
-      internalID: 594807399
+      spriteID: 59b92639868dbbd4d85b389c3199c586
+      internalID: -1092699365
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jump_2
+      name: juese_chongci_300_2
       rect:
         serializedVersion: 2
         x: 600
@@ -153,14 +153,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cc560267db1204a40abc3709cdfefafb
-      internalID: 31822261
+      spriteID: 6bfc9f84900bd664dbf3bee99c1023a5
+      internalID: -1565643849
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jump_3
+      name: juese_chongci_300_3
       rect:
         serializedVersion: 2
         x: 900
@@ -174,14 +174,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 592cea736cf0e8b4dae96f679cb4891a
-      internalID: -2026100793
+      spriteID: 991c9bc977aace242932ce8116ddd2a5
+      internalID: 1590105689
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jump_4
+      name: juese_chongci_300_4
       rect:
         serializedVersion: 2
         x: 1200
@@ -195,14 +195,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e7be15cf2e662714881e51c6d3eeb2ef
-      internalID: 327676977
+      spriteID: a19583cac785a2343b063dc2d22c7100
+      internalID: -1718511348
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jump_5
+      name: juese_chongci_300_5
       rect:
         serializedVersion: 2
         x: 1500
@@ -216,14 +216,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 77776409a41c8a24fb59dbef0b5f85be
-      internalID: -1873448198
+      spriteID: 4955a95bcbc36484e986db5b81e911bb
+      internalID: -717733226
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jump_6
+      name: juese_chongci_300_6
       rect:
         serializedVersion: 2
         x: 1800
@@ -237,14 +237,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 39e471fcffdd31545ae9c537f8423a35
-      internalID: 1914808166
+      spriteID: 4c9fde8f01b62f04cb459151fd47c246
+      internalID: 2053049047
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jump_7
+      name: juese_chongci_300_7
       rect:
         serializedVersion: 2
         x: 2100
@@ -258,14 +258,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 45337e67531216243a1361f52ecebe0d
-      internalID: -195534876
+      spriteID: 3d242db3891fb504f90ca15286533d13
+      internalID: 644836516
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jump_8
+      name: juese_chongci_300_8
       rect:
         serializedVersion: 2
         x: 2400
@@ -279,14 +279,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 97cbef62800e08847a07685b457b68b3
-      internalID: 264194882
+      spriteID: 62ffa38de685d1c4694315b735d70031
+      internalID: -1376504755
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jump_9
+      name: juese_chongci_300_9
       rect:
         serializedVersion: 2
         x: 2700
@@ -300,8 +300,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1807b53e9a8fcbe4cb5d5f7e844af2aa
-      internalID: 2112369280
+      spriteID: 0e5acc7dea6221d42b759264e34fe2e3
+      internalID: -1235498550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: juese_chongci_300_10
+      rect:
+        serializedVersion: 2
+        x: 3000
+        y: 0
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc24a1631625125488576017ebceb305
+      internalID: 403467870
       vertices: []
       indices: 
       edges: []
@@ -317,16 +338,17 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Jump_0: -386789211
-      Jump_1: 594807399
-      Jump_2: 31822261
-      Jump_3: -2026100793
-      Jump_4: 327676977
-      Jump_5: -1873448198
-      Jump_6: 1914808166
-      Jump_7: -195534876
-      Jump_8: 264194882
-      Jump_9: 2112369280
+      juese_chongci_300_0: 670488268
+      juese_chongci_300_1: -1092699365
+      juese_chongci_300_10: 403467870
+      juese_chongci_300_2: -1565643849
+      juese_chongci_300_3: 1590105689
+      juese_chongci_300_4: -1718511348
+      juese_chongci_300_5: -717733226
+      juese_chongci_300_6: 2053049047
+      juese_chongci_300_7: 644836516
+      juese_chongci_300_8: -1376504755
+      juese_chongci_300_9: -1235498550
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: abfc75c3ce328ef4fa2ea8dcf7cfa879
+guid: 490e5e21dc860b54ab966fbaf7fd508c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Jump_0
+      name: juese_tiaoyue_300_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 300
-        height: 300
+        x: 126
+        y: 74
+        width: 49
+        height: 155
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,20 +111,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4084822625a4f584ebf3f26a5f814e84
-      internalID: -386789211
+      spriteID: 3e562691fffc0074786928512b0f55c5
+      internalID: 814932129
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jump_1
+      name: juese_tiaoyue_300_1
       rect:
         serializedVersion: 2
-        x: 300
-        y: 0
-        width: 300
-        height: 300
+        x: 428
+        y: 75
+        width: 45
+        height: 167
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,20 +132,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b67a67ffad3cf6241be42f997ebf7df3
-      internalID: 594807399
+      spriteID: fa3c83efb42ed9e4088eb1867e5b3e2a
+      internalID: -1842136796
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jump_2
+      name: juese_tiaoyue_300_2
       rect:
         serializedVersion: 2
-        x: 600
-        y: 0
-        width: 300
-        height: 300
+        x: 727
+        y: 75
+        width: 46
+        height: 141
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,20 +153,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cc560267db1204a40abc3709cdfefafb
-      internalID: 31822261
+      spriteID: 8cd8a4db2ddab1c4c89ca04486f36cd8
+      internalID: -961728467
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jump_3
+      name: juese_tiaoyue_300_3
       rect:
         serializedVersion: 2
-        x: 900
-        y: 0
-        width: 300
-        height: 300
+        x: 1021
+        y: 74
+        width: 58
+        height: 105
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,20 +174,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 592cea736cf0e8b4dae96f679cb4891a
-      internalID: -2026100793
+      spriteID: 1c8a69af9937ef44aab27fddbe5a14ca
+      internalID: -1866627705
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jump_4
+      name: juese_tiaoyue_300_4
       rect:
         serializedVersion: 2
-        x: 1200
-        y: 0
-        width: 300
-        height: 300
+        x: 1311
+        y: 74
+        width: 79
+        height: 105
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,20 +195,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e7be15cf2e662714881e51c6d3eeb2ef
-      internalID: 327676977
+      spriteID: 233d50e870bb1234ea5b10cc22600b51
+      internalID: 857471939
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jump_5
+      name: juese_tiaoyue_300_5
       rect:
         serializedVersion: 2
-        x: 1500
-        y: 0
-        width: 300
-        height: 300
+        x: 1614
+        y: 74
+        width: 72
+        height: 118
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -216,20 +216,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 77776409a41c8a24fb59dbef0b5f85be
-      internalID: -1873448198
+      spriteID: 1eb077e8e3528fe44ae8edaa08bb89a2
+      internalID: 774160624
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jump_6
+      name: juese_tiaoyue_300_6
       rect:
         serializedVersion: 2
-        x: 1800
-        y: 0
-        width: 300
-        height: 300
+        x: 1931
+        y: 74
+        width: 39
+        height: 139
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -237,20 +237,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 39e471fcffdd31545ae9c537f8423a35
-      internalID: 1914808166
+      spriteID: 31a6424440073c940982e0b9da82190b
+      internalID: -977924930
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jump_7
+      name: juese_tiaoyue_300_7
       rect:
         serializedVersion: 2
-        x: 2100
-        y: 0
-        width: 300
-        height: 300
+        x: 2220
+        y: 75
+        width: 60
+        height: 63
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -258,20 +258,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 45337e67531216243a1361f52ecebe0d
-      internalID: -195534876
+      spriteID: 866b7d1f46a688b46b5a4d58ad94e954
+      internalID: -479833700
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jump_8
+      name: juese_tiaoyue_300_8
       rect:
         serializedVersion: 2
-        x: 2400
-        y: 0
-        width: 300
-        height: 300
+        x: 2519
+        y: 75
+        width: 62
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -279,20 +279,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 97cbef62800e08847a07685b457b68b3
-      internalID: 264194882
+      spriteID: a82049b1b67f4c3438fb2fa352f961cb
+      internalID: -1758065289
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jump_9
+      name: juese_tiaoyue_300_9
       rect:
         serializedVersion: 2
-        x: 2700
-        y: 0
-        width: 300
-        height: 300
+        x: 2814
+        y: 75
+        width: 73
+        height: 62
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -300,8 +300,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1807b53e9a8fcbe4cb5d5f7e844af2aa
-      internalID: 2112369280
+      spriteID: a990f3eb1bcaedc458943f5450340298
+      internalID: 1256157230
       vertices: []
       indices: 
       edges: []
@@ -317,16 +317,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Jump_0: -386789211
-      Jump_1: 594807399
-      Jump_2: 31822261
-      Jump_3: -2026100793
-      Jump_4: 327676977
-      Jump_5: -1873448198
-      Jump_6: 1914808166
-      Jump_7: -195534876
-      Jump_8: 264194882
-      Jump_9: 2112369280
+      juese_tiaoyue_300_0: 814932129
+      juese_tiaoyue_300_1: -1842136796
+      juese_tiaoyue_300_2: -961728467
+      juese_tiaoyue_300_3: -1866627705
+      juese_tiaoyue_300_4: 857471939
+      juese_tiaoyue_300_5: 774160624
+      juese_tiaoyue_300_6: -977924930
+      juese_tiaoyue_300_7: -479833700
+      juese_tiaoyue_300_8: -1758065289
+      juese_tiaoyue_300_9: 1256157230
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

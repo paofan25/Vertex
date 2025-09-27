@@ -26,6 +26,7 @@ public class DashState : IPlayerState
         // 触发冲刺事件
         AudioManager.Instance?.PlaySFX("Dash");
         CameraShaker.Instance?.Shake(0.1f, 0.2f);
+        stateMachine.animator.Play("Dash");
     }
     
     public void Update(PlayerStateMachine stateMachine)
