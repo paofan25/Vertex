@@ -31,11 +31,11 @@ public class GatherInput : MonoBehaviour
 
     private void Update()
     {
-        if (!canInput) return;
-        
         // 重置瞬时输入
         jumpInput = false;
         dashInput = false;
+        
+        if (!canInput) return;
 
         // 收集输入
         GetImput();

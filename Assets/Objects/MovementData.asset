@@ -31,20 +31,17 @@ MonoBehaviour:
   wallJumpForceY: 12
   wallJumpDirection: {x: 1, y: 1.2}
   maxDashCount: 2
-  dashForce: 13
-  dashDuration: 0.2
-  dashBackForce: 10
-  dashCooldown: 1
-  superDashExtraTime: 0.1
-  knockBackForce: 7
-  deadDrag: 5
+  dashForce: 17
+  dashDuration: 0.15
+  dashBackForce: 8
+  dashBufferTime: 0.15
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
   wallLayer:
     serializedVersion: 2
     m_Bits: 256
-  groundCheckDistance: 0.1
+  groundCheckDistance: 0.2
   wallCheckDistance: 0.51
   iFramesDuration: 0.1
   climbStamina: 20
@@ -52,3 +49,5 @@ MonoBehaviour:
   staminaRegenRate: 0.3
   climbHoldStaminaCost: 1
   climbUpStaminaCost: 2
+  deadDrag: 5
+  knockBackForce: 7
