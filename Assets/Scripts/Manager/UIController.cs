@@ -6,22 +6,28 @@ using DG.Tweening;
 
 public class UIController : MonoBehaviour
 {
-    public GameObject transitionImage; // 过渡图片
+    [SerializeField] private GameObject transitionImage; // 过渡图片
+    [SerializeField] private GameObject gameOverUI; // 游戏结束UI
+    
     private Vector2 transitionImageOranginalPosition; // 过渡图片的原始位置
+    
 
     void Awake()
     {
         transitionImage = transform.Find("TransitionImage").gameObject; // 获取过渡图片
+        gameOverUI = transform.Find("GameOver").gameObject; // 获取游戏结束UI
     }
 
     private void OnEnable()
     {
         EventBus.Subscribe<OnPlayerDeathEvent>(OnPlayerDeath); // 订阅玩家死亡事件
+        EventBus.Subscribe<GameOverEvent>(GameOver); // 订阅游戏结束事件
     }
 
     private void OnDisable()
     {
         EventBus.Unsubscribe<OnPlayerDeathEvent>(OnPlayerDeath); // 退订玩家死亡事件
+        EventBus.Unsubscribe<GameOverEvent>(GameOver); // 订阅游戏结束事件
     }
 
     // 角色死亡过渡
@@ -45,5 +51,12 @@ public class UIController : MonoBehaviour
         
         rect.anchoredPosition = transitionImageOranginalPosition; // 恢复过渡图片锚点的位置
         transitionImage.SetActive(false); // 激活过渡图片
+    }
+    
+    // 游戏结束
+    public void GameOver(GameEvent gameEvent)
+    {
+        gameOverUI.SetActive(true); // 激活游戏结束UI
+        Time.timeScale = 0f; // 暂停游戏
     }
 }

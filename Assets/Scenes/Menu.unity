@@ -1626,7 +1626,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &549671866
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1663,6 +1663,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41b4f142dbf175e47b0bac519262c2ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  settingButton: {fileID: 1818085335}
   musicVolumeText: {fileID: 282862536}
   soundEffectsText: {fileID: 1699996}
   brightnessText: {fileID: 1025251487}

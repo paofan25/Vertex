@@ -322,6 +322,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   checkDistance: 0.1
-  boxSize: {x: 0.8, y: 0.1}
+  boxSize: {x: 0.6, y: 0.1}
   rayCount: 3
   showDebug: 1

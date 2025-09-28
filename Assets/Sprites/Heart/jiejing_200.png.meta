@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fb6a41364c351d743b478b0b80f34c74
+guid: 67e5bd8de51041f41b3a1eceb8e5f1b0
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 60
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: changjing_dici_0
+      name: jiejing_200_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 37
         y: 0
-        width: 42
-        height: 57
+        width: 126
+        height: 112
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,8 +111,113 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cdf84e6192ecf9d4ab1994dbde635768
-      internalID: -1323330478
+      spriteID: 0495c1633ed619d42bb235849b593d24
+      internalID: -1645558072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jiejing_200_1
+      rect:
+        serializedVersion: 2
+        x: 246
+        y: 0
+        width: 108
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 790f922b4f3f2694ebebd0d9753f2b4c
+      internalID: -1845589410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jiejing_200_2
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 0
+        width: 88
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44c09d15185cf4f418a0cac608676f95
+      internalID: -1211573200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jiejing_200_3
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 0
+        width: 88
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 560b8eab29a627c44876b97d44fdba26
+      internalID: 1660709555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jiejing_200_4
+      rect:
+        serializedVersion: 2
+        x: 846
+        y: 0
+        width: 108
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 142ca91490772844faa322a28ad68151
+      internalID: 1182744247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jiejing_200_5
+      rect:
+        serializedVersion: 2
+        x: 1037
+        y: 0
+        width: 126
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f461e434c252e6244870ac68a1f29170
+      internalID: -763795935
       vertices: []
       indices: 
       edges: []
@@ -128,7 +233,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      changjing_dici_0: -1323330478
+      jiejing_200_0: -1645558072
+      jiejing_200_1: -1845589410
+      jiejing_200_2: -1211573200
+      jiejing_200_3: 1660709555
+      jiejing_200_4: 1182744247
+      jiejing_200_5: -763795935
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

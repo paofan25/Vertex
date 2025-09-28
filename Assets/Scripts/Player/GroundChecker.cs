@@ -7,10 +7,10 @@ using UnityEngine;
 public class GroundChecker : MonoBehaviour
 {
     [Header("检测参数")]
-    [SerializeField] private LayerMask groundLayers;
-    [SerializeField] private float checkDistance = 0.2f;
-    [SerializeField] private Vector2 boxSize = new Vector2(0.8f, 0.1f);
-    [SerializeField] private int rayCount = 3;
+    [SerializeField] private LayerMask groundLayers; // 地面层
+    [SerializeField] private float checkDistance = 0.2f; // 检测距离
+    [SerializeField] private Vector2 boxSize = new Vector2(0.8f, 0.1f); // 检测盒大小
+    [SerializeField] private int rayCount = 3; // 射线数量
     
     [Header("调试")]
     [SerializeField] private bool showDebug = true;
