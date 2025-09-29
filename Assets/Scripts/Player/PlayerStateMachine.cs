@@ -51,7 +51,7 @@ public class PlayerStateMachine : MonoBehaviour
     private void Start()
     {
         CurrentStamina = movementData.climbStamina;
-        ChangeState<IdleState>();
+        ChangeState<RebirthState>();
     }
     
     private void Update()
@@ -121,7 +121,8 @@ public class PlayerStateMachine : MonoBehaviour
             { typeof(WallSlideState), new WallSlideState() },
             { typeof(ClimbingState), new ClimbingState() },
             { typeof(WallJumpState), new WallJumpState() },
-            { typeof(DeadState), new DeadState() }
+            { typeof(DeadState), new DeadState() },
+            { typeof(RebirthState), new RebirthState() }
         };
     }
     

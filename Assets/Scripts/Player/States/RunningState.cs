@@ -17,6 +17,9 @@ public class RunningState : IPlayerState
         // 进入奔跑状态
         stateMachine.animator.Play("Run");
         stateMachine.DashCount = stateMachine.movementData.maxDashCount; // 重置冲刺次数
+        
+        // 播放移动音效
+        EventBus.Publish(new PlayMoveSEEvent(true));
     }
     
     public void Update(PlayerStateMachine stateMachine)
@@ -76,5 +79,6 @@ public class RunningState : IPlayerState
     public void Exit(PlayerStateMachine stateMachine)
     {
         // 退出奔跑状态
+        EventBus.Publish(new PlayMoveSEEvent(false)); // 停止播放移动音效
     }
 }

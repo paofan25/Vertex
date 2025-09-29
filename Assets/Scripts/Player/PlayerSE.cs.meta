@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: b9002a55051ab0b46b41629ac7810abb
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - SEsound: {instanceID: 0}
+  - move: {fileID: 8300000, guid: d7df4da82af8a3d498eec73ca4ec3869, type: 3}
+  - jump: {fileID: 8300000, guid: 0195b97ae7936bb4d8adf9e82d3386cf, type: 3}
+  - fall: {fileID: 8300000, guid: 1bd2c3532df54c54ba4a846be80d80e4, type: 3}
+  - die: {fileID: 8300000, guid: 321fc234aed6f7c49abad7f318d21d99, type: 3}
+  - rebirth: {fileID: 8300000, guid: e29f5274390c14e45bd1fd40f2109046, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

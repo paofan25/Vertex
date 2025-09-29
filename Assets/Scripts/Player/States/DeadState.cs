@@ -9,6 +9,7 @@ public class DeadState : IPlayerState
     public void Enter(PlayerStateMachine stateMachine)
     {
         // 进入死亡状态
+        EventBus.Publish(new PlayDeadSEEvent()); // 播放死亡音效
         stateMachine.StopAllCoroutines(); // 停止所有协程
         stateMachine.StartCoroutine(Die(stateMachine)); // 开始死亡协程
     }

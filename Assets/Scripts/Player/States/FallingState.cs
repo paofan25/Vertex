@@ -32,6 +32,7 @@ public class FallingState : IPlayerState
         if (stateMachine.IsGrounded)
         {
             // 着地音效和震屏
+            EventBus.Publish(new PlayFallSEEvent()); // 播放落地音效
             AudioManager.Instance?.PlaySFX("Land");
             CameraShaker.Instance?.Shake(0.05f, 0.1f);
             
@@ -40,7 +41,9 @@ public class FallingState : IPlayerState
             stateMachine.ResetStamina();
             
             if (Mathf.Abs(stateMachine.inputAdapter.MoveX) > 0.1f)
+            {
                 stateMachine.ChangeState<RunningState>();
+            }
             else
                 stateMachine.ChangeState<IdleState>();
             return;

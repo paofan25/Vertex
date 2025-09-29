@@ -45,9 +45,9 @@ public class UIController : MonoBehaviour
         
         RectTransform rect = transitionImage.GetComponent<RectTransform>(); // 获取过渡图片的RectTransform组件
         transitionImageOranginalPosition = rect.anchoredPosition; // 获取过渡图片锚点的位置
-        rect.DOAnchorPos(new Vector2(-transitionImageOranginalPosition.x, -transitionImageOranginalPosition.y), 1.3f); // 过渡图片移动
+        rect.DOAnchorPos(new Vector2(-transitionImageOranginalPosition.x, -transitionImageOranginalPosition.y), 1f); // 过渡图片移动
         
-        yield return new WaitForSecondsRealtime(1.3f); // 等待1秒
+        yield return new WaitForSecondsRealtime(1f); // 等待1秒
         
         rect.anchoredPosition = transitionImageOranginalPosition; // 恢复过渡图片锚点的位置
         transitionImage.SetActive(false); // 激活过渡图片

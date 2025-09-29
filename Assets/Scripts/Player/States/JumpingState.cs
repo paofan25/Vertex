@@ -23,6 +23,7 @@ public class JumpingState : IPlayerState
         stateMachine.animator.Play("Jump");
         
         // 播放跳跃音效
+        EventBus.Publish(new PlayJumpSEEvent());
         AudioManager.Instance?.PlaySFX("Jump");
     }
     
