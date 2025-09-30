@@ -14,17 +14,22 @@ public class Setting : MonoBehaviour
     public TMP_Text musicVolumeText;
     public TMP_Text soundEffectsText;
     public TMP_Text brightnessText;
+    public TMP_Text value_musicVolumeText;
+    public TMP_Text value_soundEffectsText;
+    public TMP_Text value_brightnessText;
 
     private float musicVolume = 50f;
     private float soundEffects = 50f;
     private float brightness = 50f;
 
     private int currentSelection = 0;
-    private TMP_Text[] settingTexts;
+    private TMP_Text[] settingTexts; // 设置文本
+    private TMP_Text[] settingValueTexts; // 数值文本
 
     void Start()
     {
         settingTexts = new TMP_Text[] { musicVolumeText, soundEffectsText, brightnessText };
+        settingValueTexts = new TMP_Text[] { value_musicVolumeText, value_soundEffectsText, value_brightnessText };
         UpdateUI();
         HighlightCurrentSelection();
     }
@@ -40,13 +45,13 @@ public class Setting : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             currentSelection--;
-            if (currentSelection < 0) currentSelection = settingTexts.Length - 1;
+            if (currentSelection < 0) currentSelection = settingValueTexts.Length - 1;
             HighlightCurrentSelection();
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             currentSelection++;
-            if (currentSelection >= settingTexts.Length) currentSelection = 0;
+            if (currentSelection >= settingValueTexts.Length) currentSelection = 0;
             HighlightCurrentSelection();
         }
 
@@ -85,25 +90,27 @@ public class Setting : MonoBehaviour
         UpdateUI();
     }
 
-    void HighlightCurrentSelection()
-    {
-        for (int i = 0; i < settingTexts.Length; i++)
-        {
-            if (settingTexts[i] != null)
-            {
-                settingTexts[i].color = (i == currentSelection) ? Color.yellow : Color.white;
-            }
-        }
-    }
-
     void UpdateUI()
     {
-        if (musicVolumeText != null)
-            musicVolumeText.text = $"{musicVolume:F0}";
-        if (soundEffectsText != null)
-            soundEffectsText.text = $"{soundEffects:F0}";
-        if (brightnessText != null)
-            brightnessText.text = $"{brightness:F0}";
+        if (value_musicVolumeText != null)
+            value_musicVolumeText.text = $"{musicVolume:F0}";
+        if (value_soundEffectsText != null)
+            value_soundEffectsText.text = $"{soundEffects:F0}";
+        if (value_brightnessText != null)
+            value_brightnessText.text = $"{brightness:F0}";
+    }
+
+    // 当前高亮选项
+    void HighlightCurrentSelection()
+    {
+        for (int i = 0; i < settingValueTexts.Length; i++)
+        {
+            if (settingValueTexts[i] != null)
+            {
+                settingTexts[i].color = (i == currentSelection) ? Color.yellow : Color.white;
+                settingValueTexts[i].color = (i == currentSelection) ? Color.yellow : Color.white;
+            }
+        }
     }
     
     // 关闭设置界面
