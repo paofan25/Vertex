@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.Audio;
 
 /// <summary>
 /// 音频管理器
@@ -17,6 +18,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip dashSFX;
     [SerializeField] private AudioClip landSFX;
     [SerializeField] private AudioClip hurtSFX;
+    
+    [SerializeField] private AudioMixer audioMixer; // 音频混音器
     
     private Dictionary<string, AudioClip> sfxLibrary;
     
@@ -58,5 +61,29 @@ public class AudioManager : MonoBehaviour
         musicSource.clip = musicClip;
         musicSource.loop = loop;
         musicSource.Play();
+    }
+    
+    // 设置总音量
+    public void SetMasterVolume(float volume)
+    {
+        audioMixer.SetFloat("MasterVolume", Mathf.Log10(volume) * 20); // 转换为分贝
+    }
+
+    // 设置背景音乐音量
+    public void SetMusicVolume(float volume)
+    {
+        audioMixer.SetFloat("MusicVolume", Mathf.Log10(volume) * 20);
+    }
+
+    // 设置音效音量
+    public void SetSoundVolume(float volume)
+    {
+        audioMixer.SetFloat("SoundEffects", Mathf.Log10(volume) * 20);
+    }
+
+    // 静音或取消静音
+    public void Mute(bool isMuted)
+    {
+        audioMixer.SetFloat("MasterVolume", isMuted ? -80f : 0f); // -80dB表示静音
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.EventSystems;
 
 public class Setting : MonoBehaviour
@@ -25,9 +26,16 @@ public class Setting : MonoBehaviour
     private int currentSelection = 0;
     private TMP_Text[] settingTexts; // 设置文本
     private TMP_Text[] settingValueTexts; // 数值文本
+    
+    private AudioMixer audioMixer;
 
     void Start()
     {
+        // 加载设置数值
+        musicVolume = PlayerPrefs.GetFloat("MasterVolume", 0.5f);
+        soundEffects = PlayerPrefs.GetFloat("MusicVolume", 0.5f);
+        brightness = PlayerPrefs.GetFloat("SoundVolume", 0.5f);
+        
         settingTexts = new TMP_Text[] { musicVolumeText, soundEffectsText, brightnessText };
         settingValueTexts = new TMP_Text[] { value_musicVolumeText, value_soundEffectsText, value_brightnessText };
         UpdateUI();
@@ -39,6 +47,7 @@ public class Setting : MonoBehaviour
         HandleKeyboardInput();
     }
 
+    // 处理键盘输入
     void HandleKeyboardInput()
     {
         // 上下导航
@@ -73,15 +82,24 @@ public class Setting : MonoBehaviour
         }
     }
 
+    // 调整当前设置
     void AdjustCurrentSetting(float amount)
     {
         switch (currentSelection)
         {
             case 0: // 音乐音量
                 musicVolume = Mathf.Clamp(musicVolume + amount, 0f, 100f);
+                if (musicVolume > 0) 
+                    AudioManager.Instance.SetMusicVolume(musicVolume / 100f);
+                else 
+                    AudioManager.Instance.SetMusicVolume(0.001f);
                 break;
             case 1: // 音效音量
                 soundEffects = Mathf.Clamp(soundEffects + amount, 0f, 100f);
+                if (soundEffects > 0)
+                    AudioManager.Instance.SetSoundVolume(soundEffects / 100f);
+                else
+                    AudioManager.Instance.SetSoundVolume(0.001f);
                 break;
             case 2: // 亮度
                 brightness = Mathf.Clamp(brightness + amount, 0f, 100f);
@@ -90,6 +108,7 @@ public class Setting : MonoBehaviour
         UpdateUI();
     }
 
+    // 更新UI
     void UpdateUI()
     {
         if (value_musicVolumeText != null)
