@@ -1,25 +1,28 @@
-﻿using System;
-using DG.Tweening;
+using System.Collections;
+using System.Collections.Generic;
 using TMPro;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class Menu2 : MonoBehaviour
+public class Pause : MonoBehaviour
 {
-    [SerializeField] private TMP_Text startText; // 开始游戏文本
+    [SerializeField] private TMP_Text continueText; // 继续游戏文本
+    [SerializeField] private TMP_Text restartText; // 重新开始文本
     [SerializeField] private TMP_Text settingText; // 设置文本
-    [SerializeField] private TMP_Text exitText; // 退出游戏文本
+    [SerializeField] private TMP_Text mainMenuText; // 返回主页文本
     
+    [SerializeField] private GameObject pausePanel; // 暂停面板
     [SerializeField] private GameObject settingPanel; // 设置面板
     
     private int currentSelection = 0; // 当前选中的菜单项索引
     private TMP_Text[] menuTexts; // 菜单文本数组
-
+    
     void Start()
     {
-        menuTexts = new TMP_Text[] { startText, settingText, exitText };
+        pausePanel.SetActive(true); // 激活暂停面板
+        settingPanel.SetActive(false); // 禁用设置面板
+        
+        menuTexts = new TMP_Text[] { continueText, restartText, settingText, mainMenuText };
         HighlightCurrentSelection();
     }
 
@@ -30,6 +33,7 @@ public class Menu2 : MonoBehaviour
         HandleKeyboardInput();
     }
     
+    // 处理键盘输入
     void HandleKeyboardInput()
     {
         // 上下导航
@@ -51,24 +55,24 @@ public class Menu2 : MonoBehaviour
             switch (currentSelection)
             {
                 case 0:
-                    SceneManager.LoadScene("Level_Test");
+                    Debug.Log("继续游戏");
+                    EventBus.Publish(new ResumeGameEvent()); // 发布游戏恢复事件
                     break;
                 case 1:
-                    settingPanel.SetActive(true); // 激活设置面板
-                    RectTransform rect = settingPanel.GetComponent<RectTransform>(); // 获取RectTransform组件
-                    rect.DOAnchorPos(new Vector2(0, 0), 0.5f); // 移动
+                    SceneTransitionManager.Instance.ReloadSceneWithFade(); // 重新加载场景
                     break;
                 case 2:
-#if UNITY_EDITOR
-                    EditorApplication.isPlaying = false;
-#else
-                    Application.Quit();
-#endif
+                    pausePanel.SetActive(false); // 禁用暂停面板
+                    settingPanel.SetActive(true); // 激活设置面板
+                    break;
+                case 3:
+                    SceneManager.LoadScene("Menu"); // 返回主菜单
                     break;
             }
         }
     }
-
+    
+    // 高亮当前选中的菜单项
     void HighlightCurrentSelection()
     {
         for (int i = 0; i < menuTexts.Length; i++)

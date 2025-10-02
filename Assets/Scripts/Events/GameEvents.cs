@@ -63,6 +63,11 @@ public class GetCameraEvent : GameEvent
 public class OnPlayerDeathEvent : GameEvent { }
 
 /// <summary>
+/// 游戏恢复事件
+/// </summary>
+public class ResumeGameEvent : GameEvent { }
+
+/// <summary>
 /// 游戏结束事件
 /// </summary>
 public class GameOverEvent : GameEvent { }

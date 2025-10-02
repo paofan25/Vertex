@@ -32,9 +32,9 @@ public class Setting : MonoBehaviour
     void Start()
     {
         // 加载设置数值
-        musicVolume = PlayerPrefs.GetFloat("MasterVolume", 0.5f);
-        soundEffects = PlayerPrefs.GetFloat("MusicVolume", 0.5f);
-        brightness = PlayerPrefs.GetFloat("SoundVolume", 0.5f);
+        musicVolume = PlayerPrefs.GetFloat("MusicVolume", 0.5f);
+        soundEffects = PlayerPrefs.GetFloat("SoundEffects", 0.5f);
+        brightness = PlayerPrefs.GetFloat("Brightness", 0.5f);
         
         settingTexts = new TMP_Text[] { musicVolumeText, soundEffectsText, brightnessText };
         settingValueTexts = new TMP_Text[] { value_musicVolumeText, value_soundEffectsText, value_brightnessText };
@@ -90,14 +90,14 @@ public class Setting : MonoBehaviour
             case 0: // 音乐音量
                 musicVolume = Mathf.Clamp(musicVolume + amount, 0f, 100f);
                 if (musicVolume > 0) 
-                    AudioManager.Instance.SetMusicVolume(musicVolume / 100f);
+                    AudioManager.Instance.SetMusicVolume(musicVolume);
                 else 
                     AudioManager.Instance.SetMusicVolume(0.001f);
                 break;
             case 1: // 音效音量
                 soundEffects = Mathf.Clamp(soundEffects + amount, 0f, 100f);
                 if (soundEffects > 0)
-                    AudioManager.Instance.SetSoundVolume(soundEffects / 100f);
+                    AudioManager.Instance.SetSoundVolume(soundEffects);
                 else
                     AudioManager.Instance.SetSoundVolume(0.001f);
                 break;
