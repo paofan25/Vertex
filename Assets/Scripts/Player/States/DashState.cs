@@ -6,7 +6,8 @@ using System.Collections;
 /// </summary>
 public class DashState : IPlayerState
 {
-    private Coroutine dashCoroutine;
+    private Coroutine dashCoroutine; // 冲刺协程
+    private Coroutine afterimageCoroutine; // 残影协程
     private Vector2 dashDirection; // 冲刺方向
 
     public void Enter(PlayerStateMachine stateMachine)
@@ -92,6 +93,9 @@ public class DashState : IPlayerState
         // 设置冲刺速度
         stateMachine.SetVelocity(dashDirection * stateMachine.movementData.dashForce);
         
+        // 生成冲刺残影
+        afterimageCoroutine = stateMachine.StartCoroutine(GenerateDashAfterImage(stateMachine));
+        
         // 确定冲刺方向
         // Vector2 dashDir = new Vector2(stateMachine.inputAdapter.MoveX, stateMachine.inputAdapter.MoveY).normalized;
         // if (dashDir == Vector2.zero)
@@ -113,6 +117,8 @@ public class DashState : IPlayerState
         // stateMachine.rb.velocity = dashDir * dashSpeed;
 
         yield return new WaitForSeconds(stateMachine.movementData.dashDuration); // 等待冲刺持续时间
+        
+        stateMachine.StopCoroutine(afterimageCoroutine); // 停止生成冲刺残影
         
         stateMachine.rb.AddForce(-dashDirection * stateMachine.movementData.dashBackForce, ForceMode2D.Impulse); // 冲刺后反冲
 
@@ -147,6 +153,20 @@ public class DashState : IPlayerState
         else
         {
             stateMachine.ChangeState<FallingState>();
+        }
+    }
+
+    /// <summary>
+    /// 生成冲刺后影
+    /// </summary>
+    /// <param name="stateMachine"></param>
+    /// <returns></returns>
+    private IEnumerator GenerateDashAfterImage(PlayerStateMachine stateMachine)
+    {
+        while (true)
+        {
+            stateMachine.SpawnDashAfterImage();
+            yield return new WaitForSeconds(stateMachine.movementData.afterImageInterval);
         }
     }
     

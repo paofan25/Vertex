@@ -246,4 +246,18 @@ public class PlayerStateMachine : MonoBehaviour
         // animator.SetBool("Grounded", IsGrounded);
         // animator.SetBool("CanDash", CanDash);
     }
+
+    /// <summary>
+    /// 生成冲刺残影
+    /// </summary>
+    public void SpawnDashAfterImage()
+    {
+        GameObject afterimageObj = Instantiate(movementData.dashAfterImagePrefab, transform.position, transform.rotation);
+    
+        // 获取预制体上的DashAfterImage组件
+        DashAfterImage afterimage = afterimageObj.GetComponent<DashAfterImage>();
+
+        // 初始化
+        afterimage.Initialize(movementData.afterImageDuration);
+    }
 }

@@ -45,6 +45,11 @@ public class MovementData : ScriptableObject
     // [Tooltip("向上冲刺滞空时间")] public float upDashHangTime = 0.1f;
     // [Tooltip("向上冲刺滞空时的垂直速度")] public float upDashHangForce = 2f;
     
+    [Header("冲刺残影")]
+    public GameObject dashAfterImagePrefab; // 冲刺残影
+    public float afterImageInterval; // 冲刺残影间隔
+    public float afterImageDuration; // 冲刺残影持续时间
+    
     [Header("地面检测")]
     public LayerMask groundLayer = 1;
     public LayerMask wallLayer = 1;

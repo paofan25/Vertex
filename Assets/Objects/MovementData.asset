@@ -35,6 +35,9 @@ MonoBehaviour:
   dashDuration: 0.15
   dashBackForce: 8
   dashBufferTime: 0.15
+  dashAfterImagePrefab: {fileID: 705386567818425119, guid: 55ebbbed6b40e6c47b96539734c3eebe, type: 3}
+  afterImageInterval: 0.03
+  afterImageDuration: 0.15
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
