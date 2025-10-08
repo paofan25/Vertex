@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class DashAfterImage : MonoBehaviour
 {
-    private SpriteRenderer spriteRenderer;
-    private float duration;
-    private float timer = 0f;
-    private Color startColor;
+    private SpriteRenderer spriteRenderer; // 残影的SpriteRenderer组件
+    private float duration; // 残影持续时间
+    private float timer = 0f; // 残影计时器
+    private Color startColor; // 预制体设置的颜色
     
     private void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponent<SpriteRenderer>(); // 获取SpriteRenderer组件
         startColor = spriteRenderer.color; // 保存预制体设置的颜色
     }
 
@@ -22,7 +22,7 @@ public class DashAfterImage : MonoBehaviour
     /// <param name="afterImageDuration">残影持续时间</param>
     public void Initialize(float afterImageDuration)
     {
-        duration = afterImageDuration;
+        duration = afterImageDuration; // 设置残影持续时间
         
         // 设置自动销毁
         Destroy(gameObject, duration);
@@ -30,13 +30,13 @@ public class DashAfterImage : MonoBehaviour
 
     private void Update()
     {
-        timer += Time.deltaTime;
+        timer += Time.deltaTime; // 更新计时器
         if (timer <= duration)
         {
-            float alpha = Mathf.Lerp(startColor.a, 0f, timer / duration);
-            Color newColor = spriteRenderer.color;
-            newColor.a = alpha;
-            spriteRenderer.color = newColor;
+            float alpha = Mathf.Lerp(startColor.a, 0f, timer / duration); // 计算透明度
+            Color newColor = spriteRenderer.color; // 获取当前颜色
+            newColor.a = alpha; // 设置新的透明度
+            spriteRenderer.color = newColor; // 应用新的颜色
         }
     }
 }

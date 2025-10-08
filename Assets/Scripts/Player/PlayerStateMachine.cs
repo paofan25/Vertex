@@ -211,13 +211,21 @@ public class PlayerStateMachine : MonoBehaviour
 
     private void CheckWall()
     {
+        bool wallOnLeft = false;
+        bool wallOnRight = false;
+        
         // 我们需要同时检测左右两边，因为玩家可能背对着墙按“抓墙”
-        bool wallOnLeft = Physics2D.Raycast(transform.position, Vector2.left,
-            movementData.wallCheckDistance, movementData.wallLayer);
-            
-        bool wallOnRight = Physics2D.Raycast(transform.position, Vector2.right,
-            movementData.wallCheckDistance, movementData.wallLayer);
-
+        if (spriteRenderer.flipX)
+        {
+            wallOnLeft = Physics2D.Raycast(transform.position, Vector2.left,
+                movementData.wallCheckDistance, movementData.wallLayer);
+        }
+        else
+        {
+            wallOnRight = Physics2D.Raycast(transform.position, Vector2.right,
+                movementData.wallCheckDistance, movementData.wallLayer);
+        }
+        
         IsAgainstWall = wallOnLeft || wallOnRight;
     }
 
@@ -253,6 +261,11 @@ public class PlayerStateMachine : MonoBehaviour
     public void SpawnDashAfterImage()
     {
         GameObject afterimageObj = Instantiate(movementData.dashAfterImagePrefab, transform.position, transform.rotation);
+
+        if (spriteRenderer.flipX)
+        {
+            afterimageObj.transform.localScale = new Vector3(-1, 1, 1);
+        }
     
         // 获取预制体上的DashAfterImage组件
         DashAfterImage afterimage = afterimageObj.GetComponent<DashAfterImage>();

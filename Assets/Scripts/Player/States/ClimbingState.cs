@@ -66,7 +66,6 @@ public class ClimbingState : IPlayerState
 
     public void Exit(PlayerStateMachine stateMachine)
     {
+        
     }
-    
-    
 }

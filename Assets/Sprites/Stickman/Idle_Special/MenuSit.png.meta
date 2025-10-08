@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d89734e771159c14b8dbad342dee74f1
+guid: 0bb20f0520fd85f4193b2d0168c304ce
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: juese_chongci_300_0
+      name: MenuSit_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 300
-        height: 300
+        x: 105
+        y: 39
+        width: 91
+        height: 98
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,20 +111,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c037b4a1aefd8f24fbcb334910adaf40
-      internalID: 670488268
+      spriteID: 5dde59257b975dc47b0b953b66fb98b4
+      internalID: -1718101085
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: juese_chongci_300_1
+      name: MenuSit_1
       rect:
         serializedVersion: 2
-        x: 300
-        y: 0
-        width: 300
-        height: 300
+        x: 402
+        y: 43
+        width: 96
+        height: 94
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,20 +132,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 59b92639868dbbd4d85b389c3199c586
-      internalID: -1092699365
+      spriteID: b923f17f440154e4fa7a3d614fc86056
+      internalID: 1500865860
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: juese_chongci_300_2
+      name: MenuSit_2
       rect:
         serializedVersion: 2
-        x: 600
-        y: 0
-        width: 300
-        height: 300
+        x: 700
+        y: 41
+        width: 99
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,20 +153,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6bfc9f84900bd664dbf3bee99c1023a5
-      internalID: -1565643849
+      spriteID: 8fe45ff90633eb84382a2c12772db12f
+      internalID: -885874008
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: juese_chongci_300_3
+      name: MenuSit_3
       rect:
         serializedVersion: 2
-        x: 900
-        y: 0
-        width: 300
-        height: 300
+        x: 999
+        y: 43
+        width: 102
+        height: 94
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,20 +174,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 991c9bc977aace242932ce8116ddd2a5
-      internalID: 1590105689
+      spriteID: 151d11f7378676c42a45e7dfae567d9b
+      internalID: 1625087950
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: juese_chongci_300_4
+      name: MenuSit_4
       rect:
         serializedVersion: 2
-        x: 1200
-        y: 0
-        width: 300
-        height: 300
+        x: 1299
+        y: 43
+        width: 102
+        height: 94
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,20 +195,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a19583cac785a2343b063dc2d22c7100
-      internalID: -1718511348
+      spriteID: 5ff0b484eb75f8440837f5b7ff5f236a
+      internalID: -611621544
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: juese_chongci_300_5
+      name: MenuSit_5
       rect:
         serializedVersion: 2
-        x: 1500
-        y: 0
-        width: 300
-        height: 300
+        x: 1599
+        y: 43
+        width: 102
+        height: 94
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -216,20 +216,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4955a95bcbc36484e986db5b81e911bb
-      internalID: -717733226
+      spriteID: 3154bff1722e3134d820a65b983c6d49
+      internalID: 521631472
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: juese_chongci_300_6
+      name: MenuSit_6
       rect:
         serializedVersion: 2
-        x: 1800
-        y: 0
-        width: 300
-        height: 300
+        x: 1900
+        y: 41
+        width: 99
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -237,20 +237,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4c9fde8f01b62f04cb459151fd47c246
-      internalID: 2053049047
+      spriteID: 3cc8b08e270759846bf7fa525ce5ae7b
+      internalID: -780919874
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: juese_chongci_300_7
+      name: MenuSit_7
       rect:
         serializedVersion: 2
-        x: 2100
-        y: 0
-        width: 300
-        height: 300
+        x: 2202
+        y: 43
+        width: 96
+        height: 94
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -258,71 +258,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3d242db3891fb504f90ca15286533d13
-      internalID: 644836516
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: juese_chongci_300_8
-      rect:
-        serializedVersion: 2
-        x: 2400
-        y: 0
-        width: 300
-        height: 300
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 62ffa38de685d1c4694315b735d70031
-      internalID: -1376504755
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: juese_chongci_300_9
-      rect:
-        serializedVersion: 2
-        x: 2700
-        y: 0
-        width: 300
-        height: 300
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0e5acc7dea6221d42b759264e34fe2e3
-      internalID: -1235498550
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: juese_chongci_300_10
-      rect:
-        serializedVersion: 2
-        x: 3000
-        y: 0
-        width: 300
-        height: 300
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dc24a1631625125488576017ebceb305
-      internalID: 403467870
+      spriteID: 3e155ac6f402738409c81ef1f49a1c54
+      internalID: -1935342697
       vertices: []
       indices: 
       edges: []
@@ -338,17 +275,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      juese_chongci_300_0: 670488268
-      juese_chongci_300_1: -1092699365
-      juese_chongci_300_10: 403467870
-      juese_chongci_300_2: -1565643849
-      juese_chongci_300_3: 1590105689
-      juese_chongci_300_4: -1718511348
-      juese_chongci_300_5: -717733226
-      juese_chongci_300_6: 2053049047
-      juese_chongci_300_7: 644836516
-      juese_chongci_300_8: -1376504755
-      juese_chongci_300_9: -1235498550
+      MenuSit_0: -1718101085
+      MenuSit_1: 1500865860
+      MenuSit_2: -885874008
+      MenuSit_3: 1625087950
+      MenuSit_4: -611621544
+      MenuSit_5: 521631472
+      MenuSit_6: -780919874
+      MenuSit_7: -1935342697
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
